@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import plane from "../assets/image/plane.svg";
 
@@ -12,7 +12,7 @@ const Container = styled.div`
   padding: 0 16px;
 
   @media screen and (max-width: 767px) {
-    padding: 0 8px; /* 모바일에서 양쪽 여백 조정 */
+    padding: 0 8px;
   }
 `;
 
@@ -29,8 +29,8 @@ const SchoolImgBox = styled.div`
 `;
 
 const SchoolImg = styled.img`
-width: 100%;
-height: 100%;
+  width: 100%;
+  height: 100%;
 `;
 
 const Title = styled.h1`
@@ -52,19 +52,23 @@ const InputBox = styled.div`
   width: 100%;
   max-width: 350px;
   background-color: #ffffff;
-  border: 1px solid #dcdcdc;
+  border: ${(props) => (props.isValid ? "1px solid #dcdcdc" : "1px solid #ff4d4d")};
   border-radius: 8px;
   padding: 10px 15px;
   margin-bottom: 15px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: ${(props) => (props.isValid ? "0px 4px 8px rgba(0, 0, 0, 0.1)" : "0px 4px 8px rgba(255, 0, 0, 0.2)")};
+  display: flex; 
+  align-items: center; 
 
   @media screen and (max-width: 767px) {
-    max-width: 300px; /* 모바일에서 최대 너비 축소 */
+    max-width: 300px;
     padding: 8px 12px;
   }
+
 `;
 
 const Input = styled.input`
+  flex: 1;
   width: 100%;
   border: none;
   outline: none;
@@ -74,8 +78,16 @@ const Input = styled.input`
   background-color: transparent;
 
   @media screen and (max-width: 767px) {
-    font-size: 0.7rem; /* 모바일에서 폰트 크기 축소 */
+    font-size: 0.7rem;
   }
+`;
+
+const ErrorMessage = styled.span`
+  font-size: 0.7rem;
+  color: #FF0000;
+  margin-left: 80%;
+  margin-left: 10px;
+  display: ${(props) => (props.isVisible ? "block" : "none")};
 `;
 
 const Button = styled.button`
@@ -99,29 +111,84 @@ const Button = styled.button`
   }
 
   @media screen and (max-width: 767px) {
-    max-width: 300px; /* 모바일에서 버튼 너비 축소 */
-    font-size: 0.9rem; /* 폰트 크기 축소 */
+    max-width: 300px;
+    font-size: 0.9rem;
     padding: 12px 0;
   }
 `;
 
 function Signup() {
+  const [formData, setFormData] = useState({
+    name: "",
+    address: "",
+    birthDate: "",
+  });
+  const [errors, setErrors] = useState({
+    name: false,
+    address: false,
+    birthDate: false,
+  });
+
+  const handleInputChange = (field, value) => {
+    setFormData({ ...formData, [field]: value });
+    setErrors({ ...errors, [field]: false }); 
+  };
+
+  const validateForm = () => {
+    const newErrors = {
+      name: formData.name.trim() === "",
+      address: formData.address.trim() === "",
+      birthDate: !/^\d{2}-\d{2}-\d{4}$/.test(formData.birthDate), 
+    };
+    setErrors(newErrors);
+    return !Object.values(newErrors).some((error) => error); 
+  };
+
+  const handleSubmit = () => {
+    if (validateForm()) {
+      console.log("Form submitted:", formData);
+    } else {
+      console.log("Form has errors");
+    }
+  };
+
   return (
     <Container>
       <SchoolImgBox>
         <SchoolImg src={plane} alt="Airplane" />
       </SchoolImgBox>
       <Title>
-        JOB SEARCH FOR<br></br>
+        JOB SEARCH FOR<br />
         INTERNATIONAL STUDENT
       </Title>
-      <InputBox>
-        <Input type="text" placeholder="Address (Home Country)" />
+      <InputBox isValid={!errors.name}>
+        <Input
+          type="text"
+          placeholder="Name (Firstname Lastname)"
+          value={formData.name}
+          onChange={(e) => handleInputChange("name", e.target.value)}
+        />
+        <ErrorMessage isVisible={errors.name}>Invalid form</ErrorMessage>
       </InputBox>
-      <InputBox>
-        <Input type="text" placeholder="Birth Date (00-00-0000)" />
+      <InputBox isValid={!errors.address}>
+        <Input
+          type="text"
+          placeholder="Address (Home Country)"
+          value={formData.address}
+          onChange={(e) => handleInputChange("address", e.target.value)}
+        />
+        <ErrorMessage isVisible={errors.address}>Invalid form</ErrorMessage>
       </InputBox>
-      <Button>Sign with Google</Button>
+      <InputBox isValid={!errors.birthDate}>
+        <Input
+          type="text"
+          placeholder="Birth Date (00-00-0000)"
+          value={formData.birthDate}
+          onChange={(e) => handleInputChange("birthDate", e.target.value)}
+        />
+        <ErrorMessage isVisible={errors.birthDate}>Invalid form</ErrorMessage>
+      </InputBox>
+      <Button onClick={handleSubmit}>Sign with Google</Button>
     </Container>
   );
 }

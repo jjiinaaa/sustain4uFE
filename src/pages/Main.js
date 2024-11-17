@@ -41,6 +41,7 @@ const Container = styled.div`
   width: 80%;
   height: 10vh;
   display: flex;
+  margin-top: 10%;
   flex-direction: column;
   align-items: center;
 
