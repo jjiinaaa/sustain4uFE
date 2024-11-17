@@ -39,19 +39,19 @@ const ArrowIcon = styled.img`
 
 const Container = styled.div`
   width: 80%;
-  height: 96vh;
+  height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   @media screen and (max-width: 767px) {
     width: 82%;
-    height: 95vh;
+    height: 10vh;
     padding: 0 9%;
   }
   @media screen and (min-width: 768px) {
     width: 40%;
-    height: 92vh;
+    height: 10vh;
     padding: 0 30%;
   }
 `;
@@ -70,6 +70,8 @@ const WelcomeText = styled.h1`
   font-family: Pretendard;
   font-weight: 900;
   color: #5c5b5b;
+  margin: 0;
+  padding: 0 3%;
   @media screen and (max-width: 767px) {
     font-size: 1rem;
     margin: 0 0 10px;
@@ -85,6 +87,7 @@ const Subtitle = styled.p`
   font-weight: 300;
   color: #5c5b5b;
   margin: 0;
+  padding: 0 3%;
   @media screen and (max-width: 767px) {
     font-size: 0.65rem;
   }
