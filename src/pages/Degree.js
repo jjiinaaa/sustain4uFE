@@ -169,9 +169,7 @@ const Degree = () => {
           <QuetionImageBox>
             <QuetionImage src={paper} alt='paper' />
           </QuetionImageBox>
-          <QuetionContent>
-            What is your degree that you have right now?
-          </QuetionContent>
+          <QuetionContent>What degree do you have right now?</QuetionContent>
         </QuetionLBox>
         <ButtonContent
           onClick={(event) => {

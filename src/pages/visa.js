@@ -164,7 +164,7 @@ const Visa = () => {
           <QuetionImageBox>
             <QuetionImage src={passport} alt='passport' />
           </QuetionImageBox>
-          <QuetionContent>What kind of VISA you have right now?</QuetionContent>
+          <QuetionContent>What is your current visa type?</QuetionContent>
         </QuetionLBox>
         <ButtonContent
           onClick={(event) => {
