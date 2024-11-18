@@ -155,8 +155,7 @@ const Checklist3 = () => {
             <QuetionImage src={notebook} alt='checklist3' />
           </QuetionImageBox>
           <QuetionContent>
-            Are you staying on a student visa to complete graduation
-            requirements?
+            Are you on a student visa to complete your graduation requirements?
           </QuetionContent>
         </QuetionLBox>
         <ButtonContent
@@ -164,14 +163,14 @@ const Checklist3 = () => {
             yesHandleButtonClick(event);
           }}
         >
-          YES, I have one
+          Yes, I am.
         </ButtonContent>
         <ButtonContent
           onClick={(event) => {
             noHandleButtonClick(event);
           }}
         >
-          No, l don't have one
+          No, I'm not.
         </ButtonContent>
         <GoTextLinkBox to={`/${statusChange}`}>
           <GoTextButton

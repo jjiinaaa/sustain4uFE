@@ -155,7 +155,7 @@ const GrandAttendance1 = () => {
             <QuetionImage src={pencil} alt='pencil' />
           </QuetionImageBox>
           <QuetionContent>
-            Did you get an average-grade of at least 2.0 from the previous
+            Did you have an average grade of at least 2.0 in the previous
             semester?
           </QuetionContent>
         </QuetionLBox>
@@ -164,14 +164,14 @@ const GrandAttendance1 = () => {
             yesHandleButtonClick(event);
           }}
         >
-          Yes, I got an average grade over 2.0
+          Yes, my average grade was<br></br> at least 2.0 last semester.
         </ButtonContent>
         <ButtonContent
           onClick={(event) => {
             noHandleButtonClick(event);
           }}
         >
-          No, I didn’t get an average grade of 2.0
+          No, my average grade was<br></br> below 2.0 last semester.
         </ButtonContent>
         <GoTextLinkBox to={`/${statusChange}`}>
           <GoTextButton

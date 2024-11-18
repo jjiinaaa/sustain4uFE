@@ -59,14 +59,16 @@ const ButtonContent = styled.button`
   width: 90%;
   height: 92px;
   margin: 0 auto 20px;
-  border: none;
+  border: ${(props) =>
+    props.active === true ? "1px solid rgba(0, 91, 172, 1)" : "none"};
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   font-size: 0.75rem;
   font-family: Pretendard;
   font-weight: 500;
-  background-color: #fff;
-  color: #5c5b5b;
+  background-color: ${(props) =>
+    props.active === true ? "rgba(0, 91, 172, 0.3)" : "#fff"};
+  color: ${(props) => (props.active === true ? "#005bac" : "#5c5b5b")};
   cursor: pointer;
 
   &:focus,
@@ -113,11 +115,15 @@ const GoTextButton = styled.button`
     padding: 13px 0;
     font-size: 1rem;
   }
+
+  // CLASS 이름으로 CSS 적용하기
+  // .checklist1 {
 `;
 
 const Checklist1 = () => {
   const [statusChange, setStatusChange] = useState("");
   const [colorChange, setColorChange] = useState(0);
+  const [active, setActive] = useState(false);
 
   useEffect(() => {
     if (statusChange === "cannot-job" || statusChange === "checklist2") {
@@ -156,22 +162,34 @@ const Checklist1 = () => {
               <QuetionImage src={calendar} alt='checklist1' />
             </QuetionImageBox>
             <QuetionContent>
-              Has it been less than six months since you have been in Korea?
+              Have you been in Korea for less than six months?
             </QuetionContent>
           </QuetionLBox>
           <ButtonContent
             onClick={(event) => {
               yesHandleButtonClick(event);
             }}
+            onTouchStart={() => {
+              setActive(true);
+            }}
+            onTouchEnd={() => {
+              setActive(false);
+            }}
           >
-            YES, I have one
+            Yes, less than six months
           </ButtonContent>
           <ButtonContent
             onClick={(event) => {
               noHandleButtonClick(event);
             }}
+            onTouchStart={() => {
+              setActive(true);
+            }}
+            onTouchEnd={() => {
+              setActive(false);
+            }}
           >
-            No, l don't have one
+            No, more than six months
           </ButtonContent>
           <GoTextLinkBox to={`/${statusChange}`}>
             <GoTextButton
