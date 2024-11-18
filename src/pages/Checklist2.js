@@ -156,7 +156,7 @@ const Checklist2 = () => {
           </QuetionImageBox>
           <QuetionContent>
             Have you ever worked without a part-time work permit or violated
-            work authorizations?
+            work authorization rules in Korea?
           </QuetionContent>
         </QuetionLBox>
         <ButtonContent
@@ -164,14 +164,14 @@ const Checklist2 = () => {
             yesHandleButtonClick(event);
           }}
         >
-          YES, I have one
+          Yes, I have.
         </ButtonContent>
         <ButtonContent
           onClick={(event) => {
             noHandleButtonClick(event);
           }}
         >
-          No, l don't have one
+          No, I haven’t.
         </ButtonContent>
         <GoTextLinkBox to={`/${statusChange}`}>
           <GoTextButton

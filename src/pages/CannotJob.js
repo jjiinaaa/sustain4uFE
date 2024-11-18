@@ -131,16 +131,14 @@ const GoTextLinkBox = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  margin: 0 auto 20px;
   text-decoration: none;
 
   @media screen and (max-width: 767px) {
     width: 90%;
-    margin: 0 auto;
   }
   @media screen and (min-width: 768px) {
     width: 40%;
-    margin: 0 auto;
   }
 `;
 
@@ -177,13 +175,15 @@ const CannotJob = () => {
         <BGContainer>
           <Background>
             <TimeContent>
-              I’m sorry, but according to your responds
-              <HighlightedText> You cannot get your job</HighlightedText>
+              Unfortunately, based on your response,
+              <HighlightedText>
+                {" "}
+                you're not eligible for the job
+              </HighlightedText>
             </TimeContent>
             <TimeContent>
-              Please ask to
-              <HighlightedText> Information Center</HighlightedText> if you have
-              a question!
+              For more details about part-time jobs, please contact the
+              <HighlightedText> International Center.</HighlightedText>
             </TimeContent>
           </Background>
         </BGContainer>

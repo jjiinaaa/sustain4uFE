@@ -131,16 +131,14 @@ const GoTextLinkBox = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-
   text-decoration: none;
+  margin: 0 auto 20px;
 
   @media screen and (max-width: 767px) {
     width: 90%;
-    margin: 0 auto;
   }
   @media screen and (min-width: 768px) {
     width: 40%;
-    margin: 0 auto;
   }
 `;
 
@@ -284,13 +282,12 @@ const Totaltime = () => {
         <BGContainer>
           <Background>
             <TimeContent>
-              According to your responds, You can work
-              <HighlightedText> {totalTime} hours per week</HighlightedText>
+              Based on your response, you can work
+              <HighlightedText> {totalTime} hours a week.</HighlightedText>
             </TimeContent>
             <TimeContent>
-              Please ask to
-              <HighlightedText> Information Center</HighlightedText> if you have
-              a question!
+              For more details, please contact the
+              <HighlightedText> International Center!</HighlightedText>
             </TimeContent>
           </Background>
         </BGContainer>

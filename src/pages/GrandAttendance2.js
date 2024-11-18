@@ -155,8 +155,8 @@ const GrandAttendance2 = () => {
             <QuetionImage src={check} alt='check' />
           </QuetionImageBox>
           <QuetionContent>
-            Do you get attendance rate at least 90% on average for all completed
-            semesters?
+            Do you have an average attendance rate of at least 90% for all
+            completed semesters?
           </QuetionContent>
         </QuetionLBox>
         <ButtonContent
@@ -164,14 +164,15 @@ const GrandAttendance2 = () => {
             yesHandleButtonClick(event);
           }}
         >
-          YES, I get one
+          Yes, my average attendance rate is
+          <br></br> at least 90%.
         </ButtonContent>
         <ButtonContent
           onClick={(event) => {
             noHandleButtonClick(event);
           }}
         >
-          No, l don't get one
+          No, my average attendance rate is <br></br>below 90%.
         </ButtonContent>
         <GoTextLinkBox
           to={`/${statusChange}`}
