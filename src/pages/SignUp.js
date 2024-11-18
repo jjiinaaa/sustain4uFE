@@ -1,187 +1,200 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import plane from "../assets/image/plane.svg";
 
 const Container = styled.div`
-  height: 96vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  @media screen and (max-width: 767px) {
-    width: 82%;
-    height: 95vh;
-    padding: 0 9%;
-  }
-  @media screen and (min-width: 768px) {
-    width: 40%;
-    height: 92vh;
-    padding: 0 30%;
-  }
-`;
-
-const AccountContatiner = styled.div`
-  width: 100%;
-  @media screen and (max-width: 767px) {
-    margin: 44px 0 72px;
-  }
-  @media screen and (min-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0px;
-    height: 35%;
-  }
-`;
-
-const AccountTitle = styled.h2`
-  font-family: Pretendard;
-  font-weight: 900;
-  color: #5c5b5b;
-  @media screen and (max-width: 767px) {
-    font-size: 1rem;
-    margin: 0 0 18px;
-  }
-  @media screen and (min-width: 768px) {
-    font-size: 1.5rem;
-    margin: 0 0 34px;
-  }
-`;
-
-const AccountText = styled.p`
-  font-family: Pretendard;
-  font-weight: 300;
-  color: #5c5b5b;
-  margin: 0;
-  @media screen and (max-width: 767px) {
-    font-size: 0.6rem;
-  }
-  @media screen and (min-width: 768px) {
-    font-size: 1rem;
-  }
-`;
-
-const InformationContainer = styled.div`
-  width: 100%;
-  flex-direction: column;
-  @media screen and (max-width: 767px) {
-    height: 80%;
-  }
-  @media screen and (min-width: 768px) {
-    height: 65%;
-  }
-`;
-
-const InformationTitle = styled.div`
-  font-family: Pretendard;
-  font-size: 1rem;
-  font-weight: 900;
-  color: #5c5b5b;
-  text-align: left;
-  @media screen and (max-width: 767px) {
-    font-size: 1rem;
-    margin: 0 0 20px;
-    & + div {
-      margin-bottom: 18px;
-    }
-  }
-  @media screen and (min-width: 768px) {
-    font-size: 1.5rem;
-    margin: 0 0 34px;
-    & + div {
-      margin-bottom: 34px;
-    }
-  }
-
-  // 다음에 있는 태그에 스타일 적용
-`;
-
-const InputBox = styled.div`
-  background-color: #e2e2e2;
-  border-radius: 8px;
-  margin: 0 auto;
-  width: 100%;
-`;
-
-const Input = styled.input`
-  width: 90%;
-  background-color: transparent;
-  color: #5c5b5b;
-  font-family: Pretendard;
-  font-weight: 300;
-  border: none;
-  padding: 0 5%;
-  outline: none;
-  @media screen and (max-width: 767px) {
-    height: 38px;
-    font-size: 0.6rem;
-  }
-  @media screen and (min-width: 768px) {
-    height: 50px;
-    font-size: 0.8rem;
-  }
-`;
-
-const SignInBox = styled.div`
-  display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  background-color: #f8f8f8;
+  padding: 0 16px;
 
   @media screen and (max-width: 767px) {
-    width: 98%;
-    margin: 256px auto 0;
-  }
-  @media screen and (min-width: 768px) {
-    width: 40%;
-    margin: 200px auto 0;
+    padding: 0 8px;
   }
 `;
 
-const SignInButton = styled.button`
+const SchoolImgBox = styled.div`
+  margin: 0 auto;
+  @media screen and (max-width: 767px) {
+    width: 120px;
+    height: 120px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 180px;
+    height: 180px;
+  }
+`;
+
+const SchoolImg = styled.img`
   width: 100%;
-  background-color: #005bac;
+  height: 100%;
+`;
+
+const Title = styled.h1`
+  font-weight: 400;
   font-family: Pretendard;
-  font-weight: 700;
-  color: white;
-  border-radius: 100px;
-  border: none;
+  color: #5c5b5b;
   text-align: center;
-  cursor: pointer;
+  margin: 0 auto 20px;
 
   @media screen and (max-width: 767px) {
-    padding: 13px 0;
     font-size: 0.75rem;
   }
   @media screen and (min-width: 768px) {
-    padding: 13px 0;
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
 `;
 
-function SignUp() {
+const InputBox = styled.div`
+  width: 100%;
+  max-width: 350px;
+  background-color: #ffffff;
+  border: ${(props) =>
+    props.isValid ? "1px solid #dcdcdc" : "1px solid #ff4d4d"};
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  box-shadow: ${(props) =>
+    props.isValid
+      ? "0px 4px 8px rgba(0, 0, 0, 0.1)"
+      : "0px 4px 8px rgba(255, 0, 0, 0.2)"};
+  display: flex;
+  align-items: center;
+
+  @media screen and (max-width: 767px) {
+    max-width: 300px;
+    padding: 8px 12px;
+  }
+`;
+
+const Input = styled.input`
+  flex: 1;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 0.5rem;
+  font-family: Pretendard, sans-serif;
+  color: #5c5b5b;
+  background-color: transparent;
+
+  @media screen and (max-width: 767px) {
+    font-size: 0.7rem;
+  }
+`;
+
+const ErrorMessage = styled.span`
+  font-size: 0.7rem;
+  color: #ff0000;
+  margin-left: 80%;
+  margin-left: 10px;
+  display: ${(props) => (props.isVisible ? "block" : "none")};
+`;
+
+const Button = styled.button`
+  width: 100%;
+  max-width: 350px;
+  background-color: #005bac;
+  color: #ffffff;
+  font-size: 1rem;
+  font-family: Pretendard, sans-serif;
+  font-weight: bold;
+  padding: 15px 0;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #003d7a;
+  }
+
+  @media screen and (max-width: 767px) {
+    max-width: 300px;
+    font-size: 0.9rem;
+    padding: 12px 0;
+  }
+`;
+
+function Signup() {
+  const [formData, setFormData] = useState({
+    name: "",
+    address: "",
+    birthDate: "",
+  });
+  const [errors, setErrors] = useState({
+    name: false,
+    address: false,
+    birthDate: false,
+  });
+
+  const handleInputChange = (field, value) => {
+    setFormData({ ...formData, [field]: value });
+    setErrors({ ...errors, [field]: false });
+  };
+
+  const validateForm = () => {
+    const newErrors = {
+      name: formData.name.trim() === "",
+      address: formData.address.trim() === "",
+      birthDate: !/^\d{2}-\d{2}-\d{4}$/.test(formData.birthDate),
+    };
+    setErrors(newErrors);
+    return !Object.values(newErrors).some((error) => error);
+  };
+
+  const handleSubmit = () => {
+    if (validateForm()) {
+      console.log("Form submitted:", formData);
+    } else {
+      console.log("Form has errors");
+    }
+  };
+
   return (
-    <div className='App'>
-      <Container>
-        <AccountContatiner>
-          <AccountTitle>Create An Account</AccountTitle>
-          <AccountText>
-            To know your qualifications for part-time job in Korea, Enter your
-            information here
-          </AccountText>
-        </AccountContatiner>
-        <InformationContainer>
-          <InformationTitle>Your Information</InformationTitle>
-          <InputBox>
-            <Input placeholder='Address (Home Country)' />
-          </InputBox>
-          <InputBox>
-            <Input placeholder='Birth Date (0000-00-00)' />
-          </InputBox>
-          <SignInBox>
-            <SignInButton>Sign In</SignInButton>
-          </SignInBox>
-        </InformationContainer>
-      </Container>
-    </div>
+    <Container>
+      <SchoolImgBox>
+        <SchoolImg src={plane} alt='Airplane' />
+      </SchoolImgBox>
+      <Title>
+        JOB SEARCH FOR
+        <br />
+        INTERNATIONAL STUDENT
+      </Title>
+      <InputBox isValid={!errors.name}>
+        <Input
+          type='text'
+          placeholder='Name (Firstname Lastname)'
+          value={formData.name}
+          onChange={(e) => handleInputChange("name", e.target.value)}
+        />
+        <ErrorMessage isVisible={errors.name}>Invalid form</ErrorMessage>
+      </InputBox>
+      <InputBox isValid={!errors.address}>
+        <Input
+          type='text'
+          placeholder='Address (Home Country)'
+          value={formData.address}
+          onChange={(e) => handleInputChange("address", e.target.value)}
+        />
+        <ErrorMessage isVisible={errors.address}>Invalid form</ErrorMessage>
+      </InputBox>
+      <InputBox isValid={!errors.birthDate}>
+        <Input
+          type='text'
+          placeholder='Birth Date (00-00-0000)'
+          value={formData.birthDate}
+          onChange={(e) => handleInputChange("birthDate", e.target.value)}
+        />
+        <ErrorMessage isVisible={errors.birthDate}>Invalid form</ErrorMessage>
+      </InputBox>
+      <Button onClick={handleSubmit}>Sign with Google</Button>
+    </Container>
   );
 }
 
-export default SignUp;
+export default Signup;

@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Start from "./pages/Start";
-import SignUp from "./pages/Signup";
+import SignUp from "./pages/SignUp";
+import Main from "./pages/Main";
 import Checklist1 from "./pages/Checklist1";
 import Checklist2 from "./pages/Checklist2";
 import Checklist3 from "./pages/Checklist3";
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Start />} />
         <Route path='/signup' element={<SignUp />} />
+        <Route path='/main' element={<Main />} />
         <Route path='/checklist1' element={<Checklist1 />} />
         <Route path='/checklist2' element={<Checklist2 />} />
         <Route path='/checklist3' element={<Checklist3 />} />
