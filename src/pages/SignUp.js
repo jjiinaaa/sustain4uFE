@@ -52,19 +52,22 @@ const InputBox = styled.div`
   width: 100%;
   max-width: 350px;
   background-color: #ffffff;
-  border: ${(props) => (props.isValid ? "1px solid #dcdcdc" : "1px solid #ff4d4d")};
+  border: ${(props) =>
+    props.isValid ? "1px solid #dcdcdc" : "1px solid #ff4d4d"};
   border-radius: 8px;
   padding: 10px 15px;
   margin-bottom: 15px;
-  box-shadow: ${(props) => (props.isValid ? "0px 4px 8px rgba(0, 0, 0, 0.1)" : "0px 4px 8px rgba(255, 0, 0, 0.2)")};
-  display: flex; 
-  align-items: center; 
+  box-shadow: ${(props) =>
+    props.isValid
+      ? "0px 4px 8px rgba(0, 0, 0, 0.1)"
+      : "0px 4px 8px rgba(255, 0, 0, 0.2)"};
+  display: flex;
+  align-items: center;
 
   @media screen and (max-width: 767px) {
     max-width: 300px;
     padding: 8px 12px;
   }
-
 `;
 
 const Input = styled.input`
@@ -84,7 +87,7 @@ const Input = styled.input`
 
 const ErrorMessage = styled.span`
   font-size: 0.7rem;
-  color: #FF0000;
+  color: #ff0000;
   margin-left: 80%;
   margin-left: 10px;
   display: ${(props) => (props.isVisible ? "block" : "none")};
@@ -131,17 +134,17 @@ function Signup() {
 
   const handleInputChange = (field, value) => {
     setFormData({ ...formData, [field]: value });
-    setErrors({ ...errors, [field]: false }); 
+    setErrors({ ...errors, [field]: false });
   };
 
   const validateForm = () => {
     const newErrors = {
       name: formData.name.trim() === "",
       address: formData.address.trim() === "",
-      birthDate: !/^\d{2}-\d{2}-\d{4}$/.test(formData.birthDate), 
+      birthDate: !/^\d{2}-\d{2}-\d{4}$/.test(formData.birthDate),
     };
     setErrors(newErrors);
-    return !Object.values(newErrors).some((error) => error); 
+    return !Object.values(newErrors).some((error) => error);
   };
 
   const handleSubmit = () => {
@@ -155,16 +158,17 @@ function Signup() {
   return (
     <Container>
       <SchoolImgBox>
-        <SchoolImg src={plane} alt="Airplane" />
+        <SchoolImg src={plane} alt='Airplane' />
       </SchoolImgBox>
       <Title>
-        JOB SEARCH FOR<br />
+        JOB SEARCH FOR
+        <br />
         INTERNATIONAL STUDENT
       </Title>
       <InputBox isValid={!errors.name}>
         <Input
-          type="text"
-          placeholder="Name (Firstname Lastname)"
+          type='text'
+          placeholder='Name (Firstname Lastname)'
           value={formData.name}
           onChange={(e) => handleInputChange("name", e.target.value)}
         />
@@ -172,8 +176,8 @@ function Signup() {
       </InputBox>
       <InputBox isValid={!errors.address}>
         <Input
-          type="text"
-          placeholder="Address (Home Country)"
+          type='text'
+          placeholder='Address (Home Country)'
           value={formData.address}
           onChange={(e) => handleInputChange("address", e.target.value)}
         />
@@ -181,8 +185,8 @@ function Signup() {
       </InputBox>
       <InputBox isValid={!errors.birthDate}>
         <Input
-          type="text"
-          placeholder="Birth Date (00-00-0000)"
+          type='text'
+          placeholder='Birth Date (00-00-0000)'
           value={formData.birthDate}
           onChange={(e) => handleInputChange("birthDate", e.target.value)}
         />
