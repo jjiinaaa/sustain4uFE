@@ -166,6 +166,7 @@ const Checklist1 = () => {
             </QuetionContent>
           </QuetionLBox>
           <ButtonContent
+            active={active}
             onClick={(event) => {
               yesHandleButtonClick(event);
             }}
@@ -179,6 +180,7 @@ const Checklist1 = () => {
             Yes, less than six months
           </ButtonContent>
           <ButtonContent
+            active={active}
             onClick={(event) => {
               noHandleButtonClick(event);
             }}
