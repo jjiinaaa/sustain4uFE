@@ -5,6 +5,11 @@ import { Tobbar } from "../components/Tobbar";
 import calendar from "../assets/image/calendar.svg";
 import Progress from "../components/Progress";
 
+const TotalContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+`;
+
 const Container = styled.div`
   width: 100%;
   display: flex;
@@ -12,12 +17,12 @@ const Container = styled.div`
   justify-content: center;
   @media screen and (max-width: 767px) {
     width: 82%;
-    height: 86vh;
+    height: 83%;
     padding: 0 9%;
   }
   @media screen and (min-width: 768px) {
     width: 40%;
-    height: 92vh;
+    height: 84%;
     padding: 0 30%;
   }
 `;
@@ -65,7 +70,6 @@ const ButtonContent = styled.button`
   cursor: pointer;
 
   &:focus,
-  &:hover,
   &:active {
     background-color: rgba(0, 91, 172, 0.3);
     color: #005bac;
@@ -139,45 +143,46 @@ const Checklist1 = () => {
 
   return (
     <>
-      <Tobbar content='CHECKBOX' />
-      <Progress progressNumber={33} />
-      <Container
-        onClick={() => {
-          handleContainerClick();
-        }}
-      >
-        <QuetionLBox>
-          <QuetionImageBox>
-            <QuetionImage src={calendar} alt='checklist1' />
-          </QuetionImageBox>
-          <QuetionContent>
-            Has it been less than six months since the date of the status
-            change?
-          </QuetionContent>
-        </QuetionLBox>
-        <ButtonContent
-          onClick={(event) => {
-            yesHandleButtonClick(event);
+      <TotalContainer>
+        <Tobbar content='CHECKBOX' />
+        <Progress progressNumber={33} />
+        <Container
+          onClick={() => {
+            handleContainerClick();
           }}
         >
-          YES, I have one
-        </ButtonContent>
-        <ButtonContent
-          onClick={(event) => {
-            noHandleButtonClick(event);
-          }}
-        >
-          No, l don't have one
-        </ButtonContent>
-        <GoTextLinkBox to={`/${statusChange}`}>
-          <GoTextButton
-            backgroundColor={colorChange}
-            disabled={statusChange === "" ? 1 : 0}
+          <QuetionLBox>
+            <QuetionImageBox>
+              <QuetionImage src={calendar} alt='checklist1' />
+            </QuetionImageBox>
+            <QuetionContent>
+              Has it been less than six months since you have been in Korea?
+            </QuetionContent>
+          </QuetionLBox>
+          <ButtonContent
+            onClick={(event) => {
+              yesHandleButtonClick(event);
+            }}
           >
-            Go Next
-          </GoTextButton>
-        </GoTextLinkBox>
-      </Container>
+            YES, I have one
+          </ButtonContent>
+          <ButtonContent
+            onClick={(event) => {
+              noHandleButtonClick(event);
+            }}
+          >
+            No, l don't have one
+          </ButtonContent>
+          <GoTextLinkBox to={`/${statusChange}`}>
+            <GoTextButton
+              backgroundColor={colorChange}
+              disabled={statusChange === "" ? 1 : 0}
+            >
+              Go Next
+            </GoTextButton>
+          </GoTextLinkBox>
+        </Container>
+      </TotalContainer>
     </>
   );
 };

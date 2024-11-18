@@ -7,7 +7,7 @@ import progressbar100 from "../assets/image/progressbar100.svg";
 
 const Container = styled.div`
   width: 40%;
-  height: 30px;
+  height: 4%;
   display: flex;
   flex-direction: column;
   justify-content: center;

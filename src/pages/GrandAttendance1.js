@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 import { Tobbar } from "../components/Tobbar";
 import pencil from "../assets/image/pencil.svg";
 import Progress from "../components/Progress";
-import GrandAttendance2 from "./GrandAttendance2";
+
+const TotalContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+`;
 
 const Container = styled.div`
   width: 100%;
@@ -13,12 +17,12 @@ const Container = styled.div`
   justify-content: center;
   @media screen and (max-width: 767px) {
     width: 82%;
-    height: 86vh;
+    height: 83%;
     padding: 0 9%;
   }
   @media screen and (min-width: 768px) {
     width: 40%;
-    height: 92vh;
+    height: 84%;
     padding: 0 30%;
   }
 `;
@@ -66,7 +70,6 @@ const ButtonContent = styled.button`
   cursor: pointer;
 
   &:focus,
-  &:hover,
   &:active {
     background-color: rgba(0, 91, 172, 0.3);
     color: #005bac;
@@ -139,7 +142,7 @@ const GrandAttendance1 = () => {
   };
 
   return (
-    <>
+    <TotalContainer>
       <Tobbar content='GRADE & ATTENDANCE' />
       <Progress progressNumber={66} />
       <Container
@@ -179,7 +182,7 @@ const GrandAttendance1 = () => {
           </GoTextButton>
         </GoTextLinkBox>
       </Container>
-    </>
+    </TotalContainer>
   );
 };
 
