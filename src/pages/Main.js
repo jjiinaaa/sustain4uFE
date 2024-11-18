@@ -4,20 +4,26 @@ import { Tobbar } from "../components/Tobbar";
 import Arrow from "../assets/image/arrow.svg";
 import { Link } from "react-router-dom";
 
+const TotalContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+`;
+
 const Container = styled.div`
-  height: 82vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   @media screen and (max-width: 767px) {
     width: 82%;
-    margin-top: 10%;
+    height: 81%;
+    margin-top: 5%;
     padding: 0 9%;
   }
   @media screen and (min-width: 768px) {
     width: 70%;
-    margin-top: 2%;
+    height: 82%;
+    margin-top: 4%;
     padding: 0 15%;
   }
 `;
@@ -84,12 +90,16 @@ const Card = styled(Link)`
     margin: 0 0 2%;
   }
 
-  &:hover {
+  &:focus,
+  &:active {
     background-color: #005bac;
 
     h2,
     p {
       color: white;
+    }
+    div > img {
+      filter: invert(100);
     }
   }
 `;
@@ -122,21 +132,27 @@ const ArrowIconTurn = styled.img`
   width: 70%;
   height: 80%;
   transform: rotate(180deg);
+  // 이미지에 후버시에 색 변경을 주고 싶다면 아래와 같이 작성
 `;
 
 const Footer = styled.footer`
   width: 100%;
-  height: 10vh;
-  display: fixed;
+  position: fixed;
   bottom: 0;
   background-color: #ffffff;
   color: #5c5b5b;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);
+  @media screen and (max-width: 767px) {
+    height: 10%;
+  }
+  @media screen and (min-width: 768px) {
+    height: 10%;
+  }
 `;
 
 function Main() {
   return (
-    <>
+    <TotalContainer>
       <Tobbar content='MAIN' />
       <Container>
         <MessageContainer>
@@ -182,7 +198,7 @@ function Main() {
         </Card>
       </Container>
       <Footer />
-    </>
+    </TotalContainer>
   );
 }
 

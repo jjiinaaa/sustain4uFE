@@ -5,16 +5,20 @@ import Arrow from "../assets/image/arrow.svg";
 const TobbarContainer = styled.div`
   width: 100%;
   position: relative;
+  z-index: 9999;
+  background-color: #fff;
   font-family: Pretendard;
   font-weight: 900;
   color: #5c5b5b;
   text-align: center;
   @media screen and (max-width: 767px) {
-    padding: 1vh 0;
+    height: 2.5%;
+    padding: 3.5% 0 3%; // 총 높이 : 9%
     font-size: 1rem;
   }
   @media screen and (min-width: 768px) {
-    padding: 2vh 0;
+    height: 1%;
+    padding: 1% 0 2%; // 총 높이 : 4%
     font-size: 1.5rem;
   }
 `;
