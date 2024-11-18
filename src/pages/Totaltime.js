@@ -23,6 +23,7 @@ const Container = styled.div`
 
 const Resultcontent = styled.div`
   width: 100%;
+  max-width: 370px;
   text-align: left;
   font-family: Pretendard;
   font-weight: 900;
