@@ -11,8 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install mustache (to update the date)
-        run: apk add ruby && gem install mustache |
-          echo "API_TOKEN_GITHUB=$API_TOKEN_GITHUB" >> .env
+        run: apk add ruby && gem install mustache
       - name: creates output
         run: sh ./build.sh
       - name: Pushes to another repository
