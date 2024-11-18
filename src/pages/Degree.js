@@ -5,6 +5,11 @@ import { Tobbar } from "../components/Tobbar";
 import paper from "../assets/image/paper.svg";
 import Progress from "../components/Progress";
 
+const TotalContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+`;
+
 const Container = styled.div`
   width: 100%;
   display: flex;
@@ -12,12 +17,12 @@ const Container = styled.div`
   justify-content: center;
   @media screen and (max-width: 767px) {
     width: 82%;
-    height: 86vh;
+    height: 81%;
     padding: 0 9%;
   }
   @media screen and (min-width: 768px) {
     width: 40%;
-    height: 92vh;
+    height: 84%;
     padding: 0 30%;
   }
 `;
@@ -65,7 +70,6 @@ const ButtonContent = styled.button`
   cursor: pointer;
 
   &:focus,
-  &:hover,
   &:active {
     background-color: rgba(0, 91, 172, 0.3);
     color: #005bac;
@@ -153,7 +157,7 @@ const Degree = () => {
   };
 
   return (
-    <>
+    <TotalContainer>
       <Tobbar content='DEGREE' />
       <Progress progressNumber={100} />
       <Container
@@ -211,7 +215,7 @@ const Degree = () => {
           </GoTextButton>
         </GoTextLinkBox>
       </Container>
-    </>
+    </TotalContainer>
   );
 };
 

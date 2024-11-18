@@ -4,20 +4,25 @@ import styled from "styled-components";
 import { Tobbar } from "../components/Tobbar";
 import CannotJobBG from "../assets/image/cannotJobBG.svg";
 
+const TotalContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+`;
+
 const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   @media screen and (max-width: 767px) {
-    width: 90%;
-    height: 95vh;
-    padding: 0 5%;
+    width: 82%;
+    height: 94%;
+    padding: 0 9%;
   }
   @media screen and (min-width: 768px) {
-    width: 40%;
-    height: 92vh;
-    padding: 0 30%;
+    width: 60%;
+    height: 84%;
+    padding: 0 20%;
   }
 `;
 
@@ -29,15 +34,18 @@ const Resultcontent = styled.div`
   font-weight: 900;
   font-size: 1rem;
   color: #5c5b5b;
-  margin: 0 auto 20px;
-  padding-left: 5%;
+  margin: 10% auto 1%;
+  padding: 0 0 0 2vw;
+  text-align: left;
 `;
 
 const BGContainer = styled.div`
-  width: 370px;
-  height: 560px;
-  position: relative;
+  max-width: 370px;
+  width: 100%;
+  max-height: 580px;
+  min-height: 580px;
   margin: 0 auto 5%;
+  position: relative;
 `;
 
 const Background = styled.div`
@@ -56,18 +64,61 @@ const TimeContent = styled.div`
   font-family: Pretendard;
   font-weight: 300;
   color: #5c5b5b;
-  font-size: 0.9rem;
+  transform: translate(-50%, -50%);
 
   &:nth-child(1) {
-    top: 6%;
-    left: 8%;
-    width: 280px;
+    width: 80%;
+    left: 50%;
   }
   &:nth-child(2) {
-    top: 22.5%;
-    right: 8%;
     text-align: right;
-    width: 260px;
+    width: 60%;
+    right: -20%;
+  }
+  @media screen and (max-width: 344px) {
+    font-size: 0.6rem;
+    &:nth-child(1) {
+      top: 21%;
+    }
+    &:nth-child(2) {
+      top: 33%;
+    }
+  }
+  @media screen and (min-width: 345px) and (max-width: 369px) {
+    font-size: 0.6rem;
+    &:nth-child(1) {
+      top: 18%;
+    }
+    &:nth-child(2) {
+      top: 31%;
+    }
+  }
+  @media screen and (min-width: 370px) and (max-width: 399px) {
+    font-size: 0.6rem;
+    &:nth-child(1) {
+      top: 16%;
+    }
+    &:nth-child(2) {
+      top: 30%;
+    }
+  }
+  @media screen and (min-width: 400px) and (max-width: 449px) {
+    font-size: 0.7rem;
+    &:nth-child(1) {
+      top: 13%;
+    }
+    &:nth-child(2) {
+      top: 28%;
+    }
+  }
+  @media screen and (min-width: 450px) {
+    font-size: 0.9rem;
+    &:nth-child(1) {
+      top: 10%;
+    }
+    &:nth-child(2) {
+      top: 26%;
+    }
   }
 `;
 
@@ -80,6 +131,7 @@ const GoTextLinkBox = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
+
   text-decoration: none;
 
   @media screen and (max-width: 767px) {
@@ -102,6 +154,7 @@ const GoTextButton = styled.button`
   border: none;
   text-align: center;
   cursor: pointer;
+  margin: 0 auto;
 
   @media screen and (max-width: 767px) {
     padding: 13px 0;
@@ -117,7 +170,7 @@ const CannotJob = () => {
   const [userName, setUserName] = useState("USER3142");
 
   return (
-    <>
+    <TotalContainer>
       <Tobbar content='RESULT' />
       <Container>
         <Resultcontent>{userName}, Here's your result</Resultcontent>
@@ -138,7 +191,7 @@ const CannotJob = () => {
           <GoTextButton>Back to Main</GoTextButton>
         </GoTextLinkBox>
       </Container>
-    </>
+    </TotalContainer>
   );
 };
 
