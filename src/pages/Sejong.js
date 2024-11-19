@@ -230,7 +230,7 @@ const Sejong = () => {
               setScore("Level 1");
             }}
           >
-            Level 1
+            Elementary 1
           </ButtonContent>
           <ButtonContent
             onClick={(event) => {
@@ -247,7 +247,7 @@ const Sejong = () => {
               setScore("Level 2");
             }}
           >
-            Level 2
+            Elementary 2
           </ButtonContent>
           <ButtonContent
             onClick={(event) => {
@@ -264,7 +264,7 @@ const Sejong = () => {
               setScore("Level 3");
             }}
           >
-            Level 3
+            Intermediate 1
           </ButtonContent>
           <ButtonContent
             onClick={(event) => {
@@ -281,7 +281,7 @@ const Sejong = () => {
               setScore("Level 4");
             }}
           >
-            Level 4
+            Intermediate 2
           </ButtonContent>
           <ButtonContent
             onClick={(event) => {
@@ -298,7 +298,7 @@ const Sejong = () => {
               setScore("Level 5");
             }}
           >
-            Level 5
+            Advanced 1
           </ButtonContent>
           <ButtonContent
             onClick={(event) => {
@@ -315,7 +315,7 @@ const Sejong = () => {
               setScore("Level 6");
             }}
           >
-            Level 6
+            Advanced 2
           </ButtonContent>
         </ButtonBox>
         <GoTextLinkBox to={`/${statusChange}`} state={{ prop, result, score }}>
