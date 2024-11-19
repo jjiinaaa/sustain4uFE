@@ -123,7 +123,7 @@ const TimeContent = styled.div`
 `;
 
 const HighlightedText = styled.span`
-  color: #005bac;
+  color: ${(props) => (props.color === "red" ? "#ff0000" : "#005bac")};
   font-weight: 900;
 `;
 
@@ -176,14 +176,17 @@ const CannotJob = () => {
           <Background>
             <TimeContent>
               Unfortunately, based on your response,
-              <HighlightedText>
+              <HighlightedText color='red'>
                 {" "}
                 you're not eligible for the job
               </HighlightedText>
             </TimeContent>
             <TimeContent>
               For more details about part-time jobs, please contact the
-              <HighlightedText> International Center.</HighlightedText>
+              <HighlightedText color='blue'>
+                {" "}
+                International Center.
+              </HighlightedText>
             </TimeContent>
           </Background>
         </BGContainer>
