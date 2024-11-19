@@ -137,45 +137,25 @@ const Visa = () => {
     }
   }, [statusChange]);
 
-  const handleContainerClick = () => {
-    setStatusChange("");
-  };
-
-  const d_2_HandleButtonClick = (event) => {
-    event.stopPropagation(); // 이벤트 버블링 방지 (부모요소로 이벤트 전파 방지)
-    setStatusChange("grand-attendance1");
-  };
-
-  const d_2_5_HandleButtonClick = (event) => {
-    event.stopPropagation(); // 이벤트 버블링 방지
-    setStatusChange("cannot-job");
-  };
-
-  const d_4_HandleButtonClick = (event) => {
-    event.stopPropagation(); // 이벤트 버블링 방지
-    setStatusChange("grand-attendance2");
-  };
-
   const handleButtonActive = (event, props) => {
     if (props === "btn1") {
       event.stopPropagation(); // 이벤트 버블링 방지
       setActive1(true);
       setActive2(false);
       setActive3(false);
+      setStatusChange("grand-attendance1");
     } else if (props === "btn2") {
       event.stopPropagation(); // 이벤트 버블링 방지
       setActive2(true);
       setActive1(false);
       setActive3(false);
+      setStatusChange("cannot-job");
     } else if (props === "btn3") {
       event.stopPropagation(); // 이벤트 버블링 방지
       setActive3(true);
       setActive1(false);
       setActive2(false);
-    } else {
-      setActive1(false);
-      setActive2(false);
-      setActive3(false);
+      setStatusChange("grand-attendance2");
     }
   };
 
@@ -183,17 +163,7 @@ const Visa = () => {
     <TotalContainer>
       <Tobbar content='VISA' />
       <Progress progressNumber={33} />
-      <Container
-        onClick={() => {
-          handleContainerClick();
-        }}
-        onTouchStart={() => {
-          handleButtonActive("container");
-        }}
-        onTouchEnd={() => {
-          handleButtonActive("container");
-        }}
-      >
+      <Container>
         <QuetionLBox>
           <QuetionImageBox>
             <QuetionImage src={passport} alt='passport' />
@@ -203,7 +173,7 @@ const Visa = () => {
         <ButtonContent
           active={active1}
           onClick={(event) => {
-            d_2_HandleButtonClick(event);
+            handleButtonActive(event, "btn1");
           }}
           onTouchStart={(event) => {
             handleButtonActive(event, "btn1");
@@ -217,7 +187,7 @@ const Visa = () => {
         <ButtonContent
           active={active2}
           onClick={(event) => {
-            d_2_5_HandleButtonClick(event);
+            handleButtonActive(event, "btn2");
           }}
           onTouchStart={(event) => {
             handleButtonActive(event, "btn2");
@@ -231,7 +201,7 @@ const Visa = () => {
         <ButtonContent
           active={active3}
           onClick={(event) => {
-            d_4_HandleButtonClick(event);
+            handleButtonActive(event, "btn3");
           }}
           onTouchStart={(event) => {
             handleButtonActive(event, "btn3");
