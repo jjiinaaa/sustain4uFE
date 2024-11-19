@@ -148,15 +148,6 @@ const Sejong = () => {
     }
   }, [statusChange]);
 
-  const handleContainerClick = () => {
-    setStatusChange("");
-  };
-
-  const clickHandleButtonClick = (event) => {
-    event.stopPropagation();
-    setStatusChange("totaltime");
-  };
-
   const handleButtonActive = (event, props) => {
     if (props === "btn1") {
       event.stopPropagation(); // 이벤트 버블링 방지
@@ -206,31 +197,15 @@ const Sejong = () => {
       setActive4(false);
       setActive5(false);
       setActive6(true);
-    } else {
-      setActive1(false);
-      setActive2(false);
-      setActive3(false);
-      setActive4(false);
-      setActive5(false);
-      setActive6(false);
     }
+    setStatusChange("totaltime");
   };
 
   return (
     <TotalContainer>
       <Tobbar content='KOREAN LEVEL' />
       <Progress progressNumber={100} half='half' />
-      <Container
-        onClick={() => {
-          handleContainerClick();
-        }}
-        onTouchStart={() => {
-          handleButtonActive("container");
-        }}
-        onTouchEnd={() => {
-          handleButtonActive("container");
-        }}
-      >
+      <Container>
         <QuetionLBox>
           <QuetionImageBox>
             <QuetionImage src={chat} alt='chat' />
@@ -242,90 +217,102 @@ const Sejong = () => {
         <ButtonBox>
           <ButtonContent
             onClick={(event) => {
-              clickHandleButtonClick(event);
+              handleButtonActive(event, "btn1");
               setScore("Level 1");
             }}
             active={active1}
             onTouchStart={(event) => {
               handleButtonActive(event, "btn1");
+              setScore("Level 1");
             }}
             onTouchEnd={(event) => {
               handleButtonActive(event, "btn1");
+              setScore("Level 1");
             }}
           >
             Level 1
           </ButtonContent>
           <ButtonContent
             onClick={(event) => {
-              clickHandleButtonClick(event);
+              handleButtonActive(event, "btn2");
               setScore("Level 2");
             }}
             active={active2}
             onTouchStart={(event) => {
               handleButtonActive(event, "btn2");
+              setScore("Level 2");
             }}
             onTouchEnd={(event) => {
               handleButtonActive(event, "btn2");
+              setScore("Level 2");
             }}
           >
             Level 2
           </ButtonContent>
           <ButtonContent
             onClick={(event) => {
-              clickHandleButtonClick(event);
+              handleButtonActive(event, "btn3");
               setScore("Level 3");
             }}
             active={active3}
             onTouchStart={(event) => {
               handleButtonActive(event, "btn3");
+              setScore("Level 3");
             }}
             onTouchEnd={(event) => {
               handleButtonActive(event, "btn3");
+              setScore("Level 3");
             }}
           >
             Level 3
           </ButtonContent>
           <ButtonContent
             onClick={(event) => {
-              clickHandleButtonClick(event);
+              handleButtonActive(event, "btn4");
               setScore("Level 4");
             }}
             active={active4}
             onTouchStart={(event) => {
               handleButtonActive(event, "btn4");
+              setScore("Level 4");
             }}
             onTouchEnd={(event) => {
               handleButtonActive(event, "btn4");
+              setScore("Level 4");
             }}
           >
             Level 4
           </ButtonContent>
           <ButtonContent
             onClick={(event) => {
-              clickHandleButtonClick(event);
+              handleButtonActive(event, "btn5");
               setScore("Level 5");
             }}
             active={active5}
             onTouchStart={(event) => {
               handleButtonActive(event, "btn5");
+              setScore("Level 5");
             }}
             onTouchEnd={(event) => {
               handleButtonActive(event, "btn5");
+              setScore("Level 5");
             }}
           >
             Level 5
           </ButtonContent>
           <ButtonContent
             onClick={(event) => {
-              clickHandleButtonClick(event);
+              handleButtonActive(event, "btn6");
               setScore("Level 6");
             }}
             active={active6}
             onTouchStart={(event) => {
               handleButtonActive(event, "btn6");
+              setScore("Level 6");
             }}
             onTouchEnd={(event) => {
               handleButtonActive(event, "btn6");
+              setScore("Level 6");
             }}
           >
             Level 6

@@ -57,7 +57,7 @@ const QuetionContent = styled.div`
 `;
 
 const InputScore = styled.input`
-  width: 90%;
+  width: 70%;
   height: 40px;
   margin: 0 auto 10px;
   border: none;
