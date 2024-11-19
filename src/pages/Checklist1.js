@@ -134,6 +134,10 @@ const Checklist1 = () => {
     }
   }, [statusChange]);
 
+  const handleContainerClick = () => {
+    setStatusChange("");
+  };
+
   const yesHandleButtonClick = (event) => {
     event.stopPropagation(); // 이벤트 버블링 방지 (부모요소로 이벤트 전파 방지)
     setStatusChange("cannot-job");
@@ -144,15 +148,18 @@ const Checklist1 = () => {
     setStatusChange("checklist2");
   };
 
-  const handleButtonActive = (props) => {
+  const handleButtonActive = (event, props) => {
     if (props === "btn1") {
+      event.stopPropagation(); // 이벤트 버블링 방지
       setActive1(true);
       setActive2(false);
-      console.log("active1: " + active1 + " active2: " + active2);
     } else if (props === "btn2") {
+      event.stopPropagation(); // 이벤트 버블링 방지
       setActive2(true);
       setActive1(false);
-      console.log("active2: " + active2 + " active1: " + active1);
+    } else {
+      setActive1(false);
+      setActive2(false);
     }
   };
 
@@ -161,7 +168,17 @@ const Checklist1 = () => {
       <TotalContainer>
         <Tobbar content='CHECKBOX' />
         <Progress progressNumber={33} />
-        <Container>
+        <Container
+          onClick={() => {
+            handleContainerClick();
+          }}
+          onTouchStart={() => {
+            handleButtonActive("container");
+          }}
+          onTouchEnd={() => {
+            handleButtonActive("container");
+          }}
+        >
           <QuetionLBox>
             <QuetionImageBox>
               <QuetionImage src={calendar} alt='checklist1' />
@@ -175,11 +192,11 @@ const Checklist1 = () => {
             onClick={(event) => {
               yesHandleButtonClick(event);
             }}
-            onTouchStart={() => {
-              handleButtonActive("btn1");
+            onTouchStart={(event) => {
+              handleButtonActive(event, "btn1");
             }}
-            onTouchEnd={() => {
-              handleButtonActive("btn1");
+            onTouchEnd={(event) => {
+              handleButtonActive(event, "btn1");
             }}
           >
             Yes, less than six months
@@ -189,11 +206,11 @@ const Checklist1 = () => {
             onClick={(event) => {
               noHandleButtonClick(event);
             }}
-            onTouchStart={() => {
-              handleButtonActive("btn2");
+            onTouchStart={(event) => {
+              handleButtonActive(event, "btn2");
             }}
-            onTouchEnd={() => {
-              handleButtonActive("btn2");
+            onTouchEnd={(event) => {
+              handleButtonActive(event, "btn2");
             }}
           >
             No, more than six months

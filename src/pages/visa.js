@@ -60,14 +60,16 @@ const ButtonContent = styled.button`
   width: 90%;
   height: 72px;
   margin: 0 auto 20px;
-  border: none;
+  border: ${(props) =>
+    props.active === true ? "1px solid rgba(0, 91, 172, 1)" : "none"};
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   font-size: 0.75rem;
   font-family: Pretendard;
   font-weight: 500;
-  background-color: #fff;
-  color: #5c5b5b;
+  background-color: ${(props) =>
+    props.active === true ? "rgba(0, 91, 172, 0.3)" : "#fff"};
+  color: ${(props) => (props.active === true ? "#005bac" : "#5c5b5b")};
   cursor: pointer;
 
   &:focus,
@@ -119,6 +121,9 @@ const GoTextButton = styled.button`
 const Visa = () => {
   const [statusChange, setStatusChange] = useState("");
   const [colorChange, setColorChange] = useState(0);
+  const [active1, setActive1] = useState(false);
+  const [active2, setActive2] = useState(false);
+  const [active3, setActive3] = useState(false);
 
   useEffect(() => {
     if (
@@ -151,6 +156,29 @@ const Visa = () => {
     setStatusChange("grand-attendance2");
   };
 
+  const handleButtonActive = (event, props) => {
+    if (props === "btn1") {
+      event.stopPropagation(); // 이벤트 버블링 방지
+      setActive1(true);
+      setActive2(false);
+      setActive3(false);
+    } else if (props === "btn2") {
+      event.stopPropagation(); // 이벤트 버블링 방지
+      setActive2(true);
+      setActive1(false);
+      setActive3(false);
+    } else if (props === "btn3") {
+      event.stopPropagation(); // 이벤트 버블링 방지
+      setActive3(true);
+      setActive1(false);
+      setActive2(false);
+    } else {
+      setActive1(false);
+      setActive2(false);
+      setActive3(false);
+    }
+  };
+
   return (
     <TotalContainer>
       <Tobbar content='VISA' />
@@ -158,6 +186,12 @@ const Visa = () => {
       <Container
         onClick={() => {
           handleContainerClick();
+        }}
+        onTouchStart={() => {
+          handleButtonActive("container");
+        }}
+        onTouchEnd={() => {
+          handleButtonActive("container");
         }}
       >
         <QuetionLBox>
@@ -167,22 +201,43 @@ const Visa = () => {
           <QuetionContent>What is your current visa type?</QuetionContent>
         </QuetionLBox>
         <ButtonContent
+          active={active1}
           onClick={(event) => {
             d_2_HandleButtonClick(event);
+          }}
+          onTouchStart={(event) => {
+            handleButtonActive(event, "btn1");
+          }}
+          onTouchEnd={(event) => {
+            handleButtonActive(event, "btn1");
           }}
         >
           D-2 (Excluding D-2-5)
         </ButtonContent>
         <ButtonContent
+          active={active2}
           onClick={(event) => {
             d_2_5_HandleButtonClick(event);
+          }}
+          onTouchStart={(event) => {
+            handleButtonActive(event, "btn2");
+          }}
+          onTouchEnd={(event) => {
+            handleButtonActive(event, "btn2");
           }}
         >
           D-2-5
         </ButtonContent>
         <ButtonContent
+          active={active3}
           onClick={(event) => {
             d_4_HandleButtonClick(event);
+          }}
+          onTouchStart={(event) => {
+            handleButtonActive(event, "btn3");
+          }}
+          onTouchEnd={(event) => {
+            handleButtonActive(event, "btn3");
           }}
         >
           D-4

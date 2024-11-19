@@ -206,19 +206,19 @@ const Totaltime = () => {
     } else if (prop === "Undergrade Student: Grade 3-4") {
       if (result === "TOPIK" || result === "Sejong") {
         if (score === "Level 4" || score === "Level 5" || score === "Level 6") {
-          setTotalTime(30);
+          setTotalTime(25);
         } else {
           setTotalTime(10);
         }
       } else if (result === "KIIP Level") {
         if (score === "Level 4" || score === "Level 5") {
-          setTotalTime(30);
+          setTotalTime(25);
         } else {
           setTotalTime(10);
         }
       } else if (result === "KIIP Score") {
         if (score >= 81) {
-          setTotalTime(30);
+          setTotalTime(25);
         } else {
           setTotalTime(10);
         }
@@ -228,19 +228,19 @@ const Totaltime = () => {
     } else if (prop === "Graduate Student") {
       if (result === "TOPIK" || result === "Sejong") {
         if (score === "Level 4" || score === "Level 5" || score === "Level 6") {
-          setTotalTime(35);
+          setTotalTime(30);
         } else {
           setTotalTime(15);
         }
       } else if (result === "KIIP Level") {
         if (score === "Level 4" || score === "Level 5") {
-          setTotalTime(35);
+          setTotalTime(30);
         } else {
           setTotalTime(15);
         }
       } else if (result === "KIIP Score") {
         if (score >= 81) {
-          setTotalTime(35);
+          setTotalTime(30);
         } else {
           setTotalTime(15);
         }

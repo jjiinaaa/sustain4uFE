@@ -60,14 +60,16 @@ const ButtonContent = styled.button`
   width: 90%;
   height: 40px;
   margin: 0 auto 10px;
-  border: none;
+  border: ${(props) =>
+    props.active === true ? "1px solid rgba(0, 91, 172, 1)" : "none"};
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   font-size: 0.75rem;
   font-family: Pretendard;
   font-weight: 500;
-  background-color: #fff;
-  color: #5c5b5b;
+  background-color: ${(props) =>
+    props.active === true ? "rgba(0, 91, 172, 0.3)" : "#fff"};
+  color: ${(props) => (props.active === true ? "#005bac" : "#5c5b5b")};
   cursor: pointer;
 
   &:focus,
@@ -122,6 +124,11 @@ const Kiiplevel = () => {
   const location = useLocation();
   const { prop, result } = location.state;
   const [score, setScore] = useState("");
+  const [active1, setActive1] = useState(false);
+  const [active2, setActive2] = useState(false);
+  const [active3, setActive3] = useState(false);
+  const [active4, setActive4] = useState(false);
+  const [active5, setActive5] = useState(false);
 
   useEffect(() => {
     if (statusChange === "totaltime") {
@@ -140,6 +147,51 @@ const Kiiplevel = () => {
     setStatusChange("totaltime");
   };
 
+  const handleButtonActive = (event, props) => {
+    if (props === "btn1") {
+      event.stopPropagation(); // 이벤트 버블링 방지
+      setActive1(true);
+      setActive2(false);
+      setActive3(false);
+      setActive4(false);
+      setActive5(false);
+    } else if (props === "btn2") {
+      event.stopPropagation(); // 이벤트 버블링 방지
+      setActive1(false);
+      setActive2(true);
+      setActive3(false);
+      setActive4(false);
+      setActive5(false);
+    } else if (props === "btn3") {
+      event.stopPropagation(); // 이벤트 버블링 방지
+      setActive1(false);
+      setActive2(false);
+      setActive3(true);
+      setActive4(false);
+      setActive5(false);
+    } else if (props === "btn4") {
+      event.stopPropagation(); // 이벤트 버블링 방지
+      setActive1(false);
+      setActive2(false);
+      setActive3(false);
+      setActive4(true);
+      setActive5(false);
+    } else if (props === "btn5") {
+      event.stopPropagation(); // 이벤트 버블링 방지
+      setActive1(false);
+      setActive2(false);
+      setActive3(false);
+      setActive4(false);
+      setActive5(true);
+    } else {
+      setActive1(false);
+      setActive2(false);
+      setActive3(false);
+      setActive4(false);
+      setActive5(false);
+    }
+  };
+
   return (
     <TotalContainer>
       <Tobbar content='KOREAN LEVEL' />
@@ -147,6 +199,12 @@ const Kiiplevel = () => {
       <Container
         onClick={() => {
           handleContainerClick();
+        }}
+        onTouchStart={() => {
+          handleButtonActive("container");
+        }}
+        onTouchEnd={() => {
+          handleButtonActive("container");
         }}
       >
         <QuetionLBox>
@@ -160,6 +218,13 @@ const Kiiplevel = () => {
             setScore("Level 1");
             clickHandleButtonClick(event);
           }}
+          active={active1}
+          onTouchStart={(event) => {
+            handleButtonActive(event, "btn1");
+          }}
+          onTouchEnd={(event) => {
+            handleButtonActive(event, "btn1");
+          }}
         >
           Level 1
         </ButtonContent>
@@ -167,6 +232,13 @@ const Kiiplevel = () => {
           onClick={(event) => {
             setScore("Level 2");
             clickHandleButtonClick(event);
+          }}
+          active={active2}
+          onTouchStart={(event) => {
+            handleButtonActive(event, "btn2");
+          }}
+          onTouchEnd={(event) => {
+            handleButtonActive(event, "btn2");
           }}
         >
           Level 2
@@ -176,6 +248,13 @@ const Kiiplevel = () => {
             setScore("Level 3");
             clickHandleButtonClick(event);
           }}
+          active={active3}
+          onTouchStart={(event) => {
+            handleButtonActive(event, "btn3");
+          }}
+          onTouchEnd={(event) => {
+            handleButtonActive(event, "btn3");
+          }}
         >
           Level 3
         </ButtonContent>
@@ -184,6 +263,13 @@ const Kiiplevel = () => {
             setScore("Level 4");
             clickHandleButtonClick(event);
           }}
+          active={active4}
+          onTouchStart={(event) => {
+            handleButtonActive(event, "btn4");
+          }}
+          onTouchEnd={(event) => {
+            handleButtonActive(event, "btn4");
+          }}
         >
           Level 4
         </ButtonContent>
@@ -191,6 +277,13 @@ const Kiiplevel = () => {
           onClick={(event) => {
             setScore("Level 5");
             clickHandleButtonClick(event);
+          }}
+          active={active5}
+          onTouchStart={(event) => {
+            handleButtonActive(event, "btn5");
+          }}
+          onTouchEnd={(event) => {
+            handleButtonActive(event, "btn5");
           }}
         >
           Level 5
