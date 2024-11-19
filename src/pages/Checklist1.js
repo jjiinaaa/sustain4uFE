@@ -134,10 +134,6 @@ const Checklist1 = () => {
     }
   }, [statusChange]);
 
-  const handleContainerClick = () => {
-    setStatusChange("");
-  };
-
   const yesHandleButtonClick = (event) => {
     event.stopPropagation(); // 이벤트 버블링 방지 (부모요소로 이벤트 전파 방지)
     setStatusChange("cannot-job");
@@ -157,10 +153,6 @@ const Checklist1 = () => {
       setActive2(true);
       setActive1(false);
       console.log("active2: " + active2 + " active1: " + active1);
-    } else {
-      setActive1(false);
-      setActive2(false);
-      console.log("active1: " + active1 + " active2: " + active2);
     }
   };
 
@@ -169,17 +161,7 @@ const Checklist1 = () => {
       <TotalContainer>
         <Tobbar content='CHECKBOX' />
         <Progress progressNumber={33} />
-        <Container
-          onClick={() => {
-            handleContainerClick();
-          }}
-          onTouchStart={() => {
-            handleButtonActive("container");
-          }}
-          onTouchEnd={() => {
-            handleButtonActive("container");
-          }}
-        >
+        <Container>
           <QuetionLBox>
             <QuetionImageBox>
               <QuetionImage src={calendar} alt='checklist1' />
