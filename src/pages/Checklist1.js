@@ -152,9 +152,15 @@ const Checklist1 = () => {
     if (props === "btn1") {
       setActive1(true);
       setActive2(false);
+      console.log("active1: " + active1 + " active2: " + active2);
     } else if (props === "btn2") {
       setActive2(true);
       setActive1(false);
+      console.log("active2: " + active2 + " active1: " + active1);
+    } else {
+      setActive1(false);
+      setActive2(false);
+      console.log("active1: " + active1 + " active2: " + active2);
     }
   };
 
@@ -167,9 +173,11 @@ const Checklist1 = () => {
           onClick={() => {
             handleContainerClick();
           }}
+          onTouchStart={() => {
+            handleButtonActive("container");
+          }}
           onTouchEnd={() => {
-            setActive1(false);
-            setActive2(false);
+            handleButtonActive("container");
           }}
         >
           <QuetionLBox>
@@ -188,6 +196,9 @@ const Checklist1 = () => {
             onTouchStart={() => {
               handleButtonActive("btn1");
             }}
+            onTouchEnd={() => {
+              handleButtonActive("btn1");
+            }}
           >
             Yes, less than six months
           </ButtonContent>
@@ -197,6 +208,9 @@ const Checklist1 = () => {
               noHandleButtonClick(event);
             }}
             onTouchStart={() => {
+              handleButtonActive("btn2");
+            }}
+            onTouchEnd={() => {
               handleButtonActive("btn2");
             }}
           >
