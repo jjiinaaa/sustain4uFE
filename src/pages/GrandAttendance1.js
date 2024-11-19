@@ -131,32 +131,17 @@ const GrandAttendance1 = () => {
     }
   }, [statusChange]);
 
-  const handleContainerClick = () => {
-    setStatusChange("");
-  };
-
-  const yesHandleButtonClick = (event) => {
-    event.stopPropagation(); // 이벤트 버블링 방지 (부모요소로 이벤트 전파 방지)
-    setStatusChange("degree");
-  };
-
-  const noHandleButtonClick = (event) => {
-    event.stopPropagation(); // 이벤트 버블링 방지
-    setStatusChange("cannot-job");
-  };
-
   const handleButtonActive = (event, props) => {
     if (props === "btn1") {
       event.stopPropagation(); // 이벤트 버블링 방지
       setActive1(true);
       setActive2(false);
+      setStatusChange("degree");
     } else if (props === "btn2") {
       event.stopPropagation(); // 이벤트 버블링 방지
       setActive2(true);
       setActive1(false);
-    } else {
-      setActive1(false);
-      setActive2(false);
+      setStatusChange("cannot-job");
     }
   };
 
@@ -164,17 +149,7 @@ const GrandAttendance1 = () => {
     <TotalContainer>
       <Tobbar content='GRADE & ATTENDANCE' />
       <Progress progressNumber={66} />
-      <Container
-        onClick={() => {
-          handleContainerClick();
-        }}
-        onTouchStart={() => {
-          handleButtonActive("container");
-        }}
-        onTouchEnd={() => {
-          handleButtonActive("container");
-        }}
-      >
+      <Container>
         <QuetionLBox>
           <QuetionImageBox>
             <QuetionImage src={pencil} alt='pencil' />
@@ -186,7 +161,7 @@ const GrandAttendance1 = () => {
         </QuetionLBox>
         <ButtonContent
           onClick={(event) => {
-            yesHandleButtonClick(event);
+            handleButtonActive(event, "btn1");
           }}
           active={active1}
           onTouchStart={(event) => {
@@ -200,7 +175,7 @@ const GrandAttendance1 = () => {
         </ButtonContent>
         <ButtonContent
           onClick={(event) => {
-            noHandleButtonClick(event);
+            handleButtonActive(event, "btn2");
           }}
           active={active2}
           onTouchStart={(event) => {

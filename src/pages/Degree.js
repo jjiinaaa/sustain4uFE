@@ -134,34 +134,6 @@ const Degree = () => {
     }
   }, [statusChange]);
 
-  const handleContainerClick = () => {
-    setStatusChange("");
-  };
-
-  const associate_HandleButtonClick = (event) => {
-    event.stopPropagation(); // 이벤트 버블링 방지 (부모요소로 이벤트 전파 방지)
-    setStatusChange("koreanlevel");
-    setDegree("Associate Degree");
-  };
-
-  const usGrade12_HandleButtonClick = (event) => {
-    event.stopPropagation(); // 이벤트 버블링 방지
-    setStatusChange("koreanlevel");
-    setDegree("Undergrade Student: Grade 1-2");
-  };
-
-  const usGrade34_HandleButtonClick = (event) => {
-    event.stopPropagation(); // 이벤트 버블링 방지 (부모요소로 이벤트 전파 방지)
-    setStatusChange("koreanlevel");
-    setDegree("Undergrade Student: Grade 3-4");
-  };
-
-  const granduate_HandleButtonClick = (event) => {
-    event.stopPropagation(); // 이벤트 버블링 방지
-    setStatusChange("koreanlevel");
-    setDegree("Graduate Student");
-  };
-
   const handleButtonActive = (event, props) => {
     if (props === "btn1") {
       event.stopPropagation(); // 이벤트 버블링 방지
@@ -169,29 +141,32 @@ const Degree = () => {
       setActive2(false);
       setActive3(false);
       setActive4(false);
+      setStatusChange("koreanlevel");
+      setDegree("Associate Degree");
     } else if (props === "btn2") {
       event.stopPropagation(); // 이벤트 버블링 방지
       setActive1(false);
       setActive2(true);
       setActive3(false);
       setActive4(false);
+      setStatusChange("koreanlevel");
+      setDegree("Undergrade Student: Grade 1-2");
     } else if (props === "btn3") {
       event.stopPropagation(); // 이벤트 버블링 방지
       setActive1(false);
       setActive2(false);
       setActive3(true);
       setActive4(false);
+      setStatusChange("koreanlevel");
+      setDegree("Undergrade Student: Grade 3-4");
     } else if (props === "btn4") {
       event.stopPropagation(); // 이벤트 버블링 방지
       setActive1(false);
       setActive2(false);
       setActive3(false);
       setActive4(true);
-    } else {
-      setActive1(false);
-      setActive2(false);
-      setActive3(false);
-      setActive4(false);
+      setStatusChange("koreanlevel");
+      setDegree("Graduate Student");
     }
   };
 
@@ -199,17 +174,7 @@ const Degree = () => {
     <TotalContainer>
       <Tobbar content='DEGREE' />
       <Progress progressNumber={100} />
-      <Container
-        onClick={() => {
-          handleContainerClick();
-        }}
-        onTouchStart={() => {
-          handleButtonActive("container");
-        }}
-        onTouchEnd={() => {
-          handleButtonActive("container");
-        }}
-      >
+      <Container>
         <QuetionLBox>
           <QuetionImageBox>
             <QuetionImage src={paper} alt='paper' />
@@ -218,7 +183,7 @@ const Degree = () => {
         </QuetionLBox>
         <ButtonContent
           onClick={(event) => {
-            associate_HandleButtonClick(event);
+            handleButtonActive(event, "btn1");
           }}
           active={active1}
           onTouchStart={(event) => {
@@ -232,7 +197,7 @@ const Degree = () => {
         </ButtonContent>
         <ButtonContent
           onClick={(event) => {
-            usGrade12_HandleButtonClick(event);
+            handleButtonActive(event, "btn2");
           }}
           active={active2}
           onTouchStart={(event) => {
@@ -246,7 +211,7 @@ const Degree = () => {
         </ButtonContent>
         <ButtonContent
           onClick={(event) => {
-            usGrade34_HandleButtonClick(event);
+            handleButtonActive(event, "btn3");
           }}
           active={active3}
           onTouchStart={(event) => {
@@ -260,7 +225,7 @@ const Degree = () => {
         </ButtonContent>
         <ButtonContent
           onClick={(event) => {
-            granduate_HandleButtonClick(event);
+            handleButtonActive(event, "btn4");
           }}
           active={active4}
           onTouchStart={(event) => {

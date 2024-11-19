@@ -71,7 +71,8 @@ const ButtonContent = styled.button`
   color: ${(props) => (props.active === true ? "#005bac" : "#5c5b5b")};
   cursor: pointer;
 
-  &:focus {
+  &:focus,
+  &:active {
     background-color: rgba(0, 91, 172, 0.3);
     color: #005bac;
     border: 1px solid rgba(0, 91, 172, 1);
@@ -133,28 +134,17 @@ const Checklist1 = () => {
     }
   }, [statusChange]);
 
-  const yesHandleButtonClick = (event) => {
-    event.stopPropagation(); // 이벤트 버블링 방지 (부모요소로 이벤트 전파 방지)
-    setStatusChange("cannot-job");
-  };
-
-  const noHandleButtonClick = (event) => {
-    event.stopPropagation(); // 이벤트 버블링 방지
-    setStatusChange("checklist2");
-  };
-
   const handleButtonActive = (event, props) => {
     if (props === "btn1") {
       event.stopPropagation(); // 이벤트 버블링 방지
       setActive1(true);
       setActive2(false);
+      setStatusChange("cannot-job");
     } else if (props === "btn2") {
       event.stopPropagation(); // 이벤트 버블링 방지
       setActive2(true);
       setActive1(false);
-    } else {
-      setActive1(false);
-      setActive2(false);
+      setStatusChange("checklist2");
     }
   };
 
@@ -175,7 +165,10 @@ const Checklist1 = () => {
           <ButtonContent
             active={active1}
             onClick={(event) => {
-              yesHandleButtonClick(event);
+              handleButtonActive(event, "btn1");
+            }}
+            onTouchStart={(event) => {
+              handleButtonActive(event, "btn1");
             }}
             onTouchEnd={(event) => {
               handleButtonActive(event, "btn1");
@@ -186,7 +179,10 @@ const Checklist1 = () => {
           <ButtonContent
             active={active2}
             onClick={(event) => {
-              noHandleButtonClick(event);
+              handleButtonActive(event, "btn2");
+            }}
+            onTouchStart={(event) => {
+              handleButtonActive(event, "btn2");
             }}
             onTouchEnd={(event) => {
               handleButtonActive(event, "btn2");

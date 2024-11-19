@@ -131,32 +131,17 @@ const Checklist3 = () => {
     }
   }, [statusChange]);
 
-  const handleContainerClick = () => {
-    setStatusChange("");
-  };
-
-  const yesHandleButtonClick = (event) => {
-    event.stopPropagation(); // 이벤트 버블링 방지 (부모요소로 이벤트 전파 방지)
-    setStatusChange("cannot-job");
-  };
-
-  const noHandleButtonClick = (event) => {
-    event.stopPropagation(); // 이벤트 버블링 방지
-    setStatusChange("visa");
-  };
-
   const handleButtonActive = (event, props) => {
     if (props === "btn1") {
       event.stopPropagation(); // 이벤트 버블링 방지
       setActive1(true);
       setActive2(false);
+      setStatusChange("cannot-job");
     } else if (props === "btn2") {
       event.stopPropagation(); // 이벤트 버블링 방지
       setActive2(true);
       setActive1(false);
-    } else {
-      setActive1(false);
-      setActive2(false);
+      setStatusChange("visa");
     }
   };
 
@@ -164,17 +149,7 @@ const Checklist3 = () => {
     <TotalContainer>
       <Tobbar content='CHECKBOX' />
       <Progress progressNumber={100} />
-      <Container
-        onClick={() => {
-          handleContainerClick();
-        }}
-        onTouchStart={() => {
-          handleButtonActive("container");
-        }}
-        onTouchEnd={() => {
-          handleButtonActive("container");
-        }}
-      >
+      <Container>
         <QuetionLBox>
           <QuetionImageBox>
             <QuetionImage src={notebook} alt='checklist3' />
@@ -186,7 +161,7 @@ const Checklist3 = () => {
         <ButtonContent
           active={active1}
           onClick={(event) => {
-            yesHandleButtonClick(event);
+            handleButtonActive(event, "btn1");
           }}
           onTouchStart={(event) => {
             handleButtonActive(event, "btn1");
@@ -200,7 +175,7 @@ const Checklist3 = () => {
         <ButtonContent
           active={active2}
           onClick={(event) => {
-            noHandleButtonClick(event);
+            handleButtonActive(event, "btn2");
           }}
           onTouchStart={(event) => {
             handleButtonActive(event, "btn2");

@@ -144,16 +144,7 @@ const Koreanlevel = () => {
     }
   }, [statusChange]);
 
-  const handleContainerClick = () => {
-    setStatusChange("");
-  };
-
-  const clickHandleButtonClick = (event, testName) => {
-    event.stopPropagation();
-    setStatusChange(testName);
-  };
-
-  const handleButtonActive = (event, props) => {
+  const handleButtonActive = (event, props, testName) => {
     if (props === "btn1") {
       event.stopPropagation(); // 이벤트 버블링 방지
       setActive1(true);
@@ -189,30 +180,15 @@ const Koreanlevel = () => {
       setActive3(false);
       setActive4(false);
       setActive5(true);
-    } else {
-      setActive1(false);
-      setActive2(false);
-      setActive3(false);
-      setActive4(false);
-      setActive5(false);
     }
+    setStatusChange(testName);
   };
 
   return (
     <TotalContainer>
       <Tobbar content='KOREAN LEVEL' />
       <Progress progressNumber={50} />
-      <Container
-        onClick={() => {
-          handleContainerClick();
-        }}
-        onTouchStart={() => {
-          handleButtonActive("container");
-        }}
-        onTouchEnd={() => {
-          handleButtonActive("container");
-        }}
-      >
+      <Container>
         <QuetionLBox>
           <QuetionImageBox>
             <QuetionImage src={chat} alt='chat' />
@@ -223,75 +199,85 @@ const Koreanlevel = () => {
         </QuetionLBox>
         <ButtonContent
           onClick={(event) => {
-            clickHandleButtonClick(event, "topik");
+            handleButtonActive(event, "btn1", "topik");
             setResult("TOPIK");
           }}
           active={active1}
           onTouchStart={(event) => {
-            handleButtonActive(event, "btn1");
+            handleButtonActive(event, "btn1", "topik");
+            setResult("TOPIK");
           }}
           onTouchEnd={(event) => {
-            handleButtonActive(event, "btn1");
+            handleButtonActive(event, "btn1", "topik");
+            setResult("TOPIK");
           }}
         >
           TOPIK
         </ButtonContent>
         <ButtonContent
           onClick={(event) => {
-            clickHandleButtonClick(event, "kiiplevel");
+            handleButtonActive(event, "btn2", "kiiplevel");
             setResult("KIIP Level");
           }}
           active={active2}
           onTouchStart={(event) => {
-            handleButtonActive(event, "btn2");
+            handleButtonActive(event, "btn2", "kiiplevel");
+            setResult("KIIP Level");
           }}
           onTouchEnd={(event) => {
-            handleButtonActive(event, "btn2");
+            handleButtonActive(event, "btn2", "kiiplevel");
+            setResult("KIIP Level");
           }}
         >
           Korea Immigration & Integration Program
         </ButtonContent>
         <ButtonContent
           onClick={(event) => {
-            clickHandleButtonClick(event, "kiipscore");
+            handleButtonActive(event, "btn3", "kiipscore");
             setResult("KIIP Score");
           }}
           active={active3}
           onTouchStart={(event) => {
-            handleButtonActive(event, "btn3");
+            handleButtonActive(event, "btn3", "kiipscore");
+            setResult("KIIP Score");
           }}
           onTouchEnd={(event) => {
-            handleButtonActive(event, "btn3");
+            handleButtonActive(event, "btn3", "kiipscore");
+            setResult("KIIP Score");
           }}
         >
           KIIP Level test score
         </ButtonContent>
         <ButtonContent
           onClick={(event) => {
-            clickHandleButtonClick(event, "sejong");
+            handleButtonActive(event, "btn4", "sejong");
             setResult("Sejong");
           }}
           active={active4}
           onTouchStart={(event) => {
-            handleButtonActive(event, "btn4");
+            handleButtonActive(event, "btn4", "sejong");
+            setResult("Sejong");
           }}
           onTouchEnd={(event) => {
-            handleButtonActive(event, "btn4");
+            handleButtonActive(event, "btn4", "sejong");
+            setResult("Sejong");
           }}
         >
           Sejong Institute Korean Level
         </ButtonContent>
         <ButtonContent
           onClick={(event) => {
-            clickHandleButtonClick(event, "totaltime");
+            handleButtonActive(event, "btn5", "totaltime");
             setResult("not score");
           }}
           active={active5}
           onTouchStart={(event) => {
-            handleButtonActive(event, "btn5");
+            handleButtonActive(event, "btn5", "totaltime");
+            setResult("not score");
           }}
           onTouchEnd={(event) => {
             handleButtonActive(event, "btn5");
+            setResult("not score");
           }}
         >
           I don’t have a Korean Level
