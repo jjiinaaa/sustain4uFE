@@ -71,8 +71,7 @@ const ButtonContent = styled.button`
   color: ${(props) => (props.active === true ? "#005bac" : "#5c5b5b")};
   cursor: pointer;
 
-  &:focus,
-  &:active {
+  &:focus {
     background-color: rgba(0, 91, 172, 0.3);
     color: #005bac;
     border: 1px solid rgba(0, 91, 172, 1);
