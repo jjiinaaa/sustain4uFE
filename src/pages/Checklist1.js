@@ -123,7 +123,8 @@ const GoTextButton = styled.button`
 const Checklist1 = () => {
   const [statusChange, setStatusChange] = useState("");
   const [colorChange, setColorChange] = useState(0);
-  const [active, setActive] = useState(false);
+  const [active1, setActive1] = useState(false);
+  const [active2, setActive2] = useState(false);
 
   useEffect(() => {
     if (statusChange === "cannot-job" || statusChange === "checklist2") {
@@ -147,6 +148,16 @@ const Checklist1 = () => {
     setStatusChange("checklist2");
   };
 
+  const handleButtonActive = (props) => {
+    if (props === "btn1") {
+      setActive1(true);
+      setActive2(false);
+    } else if (props === "btn2") {
+      setActive2(true);
+      setActive1(false);
+    }
+  };
+
   return (
     <>
       <TotalContainer>
@@ -155,6 +166,10 @@ const Checklist1 = () => {
         <Container
           onClick={() => {
             handleContainerClick();
+          }}
+          onTouchEnd={() => {
+            setActive1(false);
+            setActive2(false);
           }}
         >
           <QuetionLBox>
@@ -166,29 +181,23 @@ const Checklist1 = () => {
             </QuetionContent>
           </QuetionLBox>
           <ButtonContent
-            active={active}
+            active={active1}
             onClick={(event) => {
               yesHandleButtonClick(event);
             }}
             onTouchStart={() => {
-              setActive(true);
-            }}
-            onTouchEnd={() => {
-              setActive(false);
+              handleButtonActive("btn1");
             }}
           >
             Yes, less than six months
           </ButtonContent>
           <ButtonContent
-            active={active}
+            active={active2}
             onClick={(event) => {
               noHandleButtonClick(event);
             }}
             onTouchStart={() => {
-              setActive(true);
-            }}
-            onTouchEnd={() => {
-              setActive(false);
+              handleButtonActive("btn2");
             }}
           >
             No, more than six months
