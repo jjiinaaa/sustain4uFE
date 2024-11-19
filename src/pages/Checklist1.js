@@ -171,9 +171,6 @@ const Checklist1 = () => {
           onClick={() => {
             handleContainerClick();
           }}
-          onTouchStart={() => {
-            handleButtonActive("container");
-          }}
           onTouchEnd={() => {
             handleButtonActive("container");
           }}
@@ -191,9 +188,6 @@ const Checklist1 = () => {
             onClick={(event) => {
               yesHandleButtonClick(event);
             }}
-            onTouchStart={(event) => {
-              handleButtonActive(event, "btn1");
-            }}
             onTouchEnd={(event) => {
               handleButtonActive(event, "btn1");
             }}
@@ -204,9 +198,6 @@ const Checklist1 = () => {
             active={active2}
             onClick={(event) => {
               noHandleButtonClick(event);
-            }}
-            onTouchStart={(event) => {
-              handleButtonActive(event, "btn2");
             }}
             onTouchEnd={(event) => {
               handleButtonActive(event, "btn2");
