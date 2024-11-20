@@ -115,18 +115,41 @@ const ArrowIconTurn = styled.img`
   // 이미지에 후버시에 색 변경을 주고 싶다면 아래와 같이 작성
 `;
 
-const Footer = styled.footer`
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  background-color: #ffffff;
-  color: #5c5b5b;
-  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);
+const GoTextLinkBox = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+
   @media screen and (max-width: 767px) {
-    height: 10%;
+    width: 90%;
+    margin: 50px auto 0;
   }
   @media screen and (min-width: 768px) {
-    height: 10%;
+    width: 40%;
+    margin: 50px auto 0;
+  }
+`;
+
+const GoTextButton = styled.button`
+  width: 100%;
+  background-color: #005bac;
+  font-family: Pretendard;
+  font-weight: 700;
+  color: #f1f1f1;
+  border-radius: 100px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 5%;
+
+  @media screen and (max-width: 767px) {
+    padding: 13px 0;
+    font-size: 0.75rem;
+  }
+  @media screen and (min-width: 768px) {
+    padding: 13px 0;
+    font-size: 1rem;
   }
 `;
 
@@ -168,8 +191,10 @@ const UnpermittedMain = () => {
             Special Cases for Part-Time <br></br>Employment Authorization
           </CardTitle>
         </Card>
+        <GoTextLinkBox to={`/main`}>
+          <GoTextButton>Back to Main</GoTextButton>
+        </GoTextLinkBox>
       </Container>
-      <Footer />
     </TotalContainer>
   );
 };
