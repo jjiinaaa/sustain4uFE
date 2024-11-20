@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import plane from "../assets/image/plane.svg";
+import { useNavigate } from 'react-router-dom';
+import pb from "../services/pb";
 
 const Container = styled.div`
   display: flex;
@@ -48,7 +50,9 @@ const Title = styled.h1`
   }
 `;
 
-const InputBox = styled.div`
+const InputBox = styled.div.attrs((props) => ({
+  isValid: props.isValid,
+}))`
   width: 100%;
   max-width: 350px;
   background-color: #ffffff;
@@ -70,6 +74,7 @@ const InputBox = styled.div`
   }
 `;
 
+
 const Input = styled.input`
   flex: 1;
   width: 100%;
@@ -85,10 +90,11 @@ const Input = styled.input`
   }
 `;
 
-const ErrorMessage = styled.span`
+const ErrorMessage = styled.span.attrs((props) => ({
+  isVisible: props.isVisible,
+}))`
   font-size: 0.7rem;
   color: #ff0000;
-  margin-left: 80%;
   margin-left: 10px;
   display: ${(props) => (props.isVisible ? "block" : "none")};
 `;
@@ -121,6 +127,8 @@ const Button = styled.button`
 `;
 
 function Signup() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     address: "",
@@ -138,18 +146,41 @@ function Signup() {
   };
 
   const validateForm = () => {
+    const nameRegex = /^[A-Za-z\s]+$/; 
     const newErrors = {
-      name: formData.name.trim() === "",
+      name: formData.name.trim() === "" || !nameRegex.test(formData.name), 
       address: formData.address.trim() === "",
       birthDate: !/^\d{2}-\d{2}-\d{4}$/.test(formData.birthDate),
     };
     setErrors(newErrors);
     return !Object.values(newErrors).some((error) => error);
   };
+  
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (validateForm()) {
-      console.log("Form submitted:", formData);
+      try {
+        const currentUser = pb.authStore.model;
+        const email = currentUser?.email;
+
+        if (!email) {
+          console.error("User email not found.");
+          return;
+        }
+
+        const data = {
+          email: email, 
+          name: formData.name,
+          address: formData.address,
+          birth: formData.birthDate,
+        };
+
+        const record = await pb.collection("users").update(currentUser.id, data);
+        console.log("User information updated:", record);
+        navigate('/main');
+      } catch (error) {
+        console.error("Error saving user data:", error);
+      }
     } else {
       console.log("Form has errors");
     }
@@ -158,7 +189,7 @@ function Signup() {
   return (
     <Container>
       <SchoolImgBox>
-        <SchoolImg src={plane} alt='Airplane' />
+        <SchoolImg src={plane} alt="Airplane" />
       </SchoolImgBox>
       <Title>
         JOB SEARCH FOR
@@ -167,8 +198,8 @@ function Signup() {
       </Title>
       <InputBox isValid={!errors.name}>
         <Input
-          type='text'
-          placeholder='Name (Firstname Lastname)'
+          type="text"
+          placeholder="Name (Firstname Lastname)"
           value={formData.name}
           onChange={(e) => handleInputChange("name", e.target.value)}
         />
@@ -176,8 +207,8 @@ function Signup() {
       </InputBox>
       <InputBox isValid={!errors.address}>
         <Input
-          type='text'
-          placeholder='Address (Home Country)'
+          type="text"
+          placeholder="Address (Home Country)"
           value={formData.address}
           onChange={(e) => handleInputChange("address", e.target.value)}
         />
@@ -185,14 +216,14 @@ function Signup() {
       </InputBox>
       <InputBox isValid={!errors.birthDate}>
         <Input
-          type='text'
-          placeholder='Birth Date (00-00-0000)'
+          type="text"
+          placeholder="Birth Date (DD-MM-YYYY)"
           value={formData.birthDate}
           onChange={(e) => handleInputChange("birthDate", e.target.value)}
         />
         <ErrorMessage isVisible={errors.birthDate}>Invalid form</ErrorMessage>
       </InputBox>
-      <Button onClick={handleSubmit}>Sign with Google</Button>
+      <Button onClick={handleSubmit}>Sign Up</Button>
     </Container>
   );
 }

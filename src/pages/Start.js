@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import plane from "../assets/image/plane.svg";
+import { useNavigate } from 'react-router-dom';
+import pb from '../services/pb';
+
 
 const Container = styled.div`
   width: 100%;
@@ -74,6 +77,42 @@ const LoginButton = styled.button`
 `;
 
 function Start() {
+  const navigate = useNavigate();
+
+  const handleGoogleLogin = async () => {
+    try {
+      // 구글 OAuth2 로그인
+      await pb.collection("users").authWithOAuth2({ provider: "google" });
+      console.log("Google login successful");
+
+      // 로그인한 사용자 정보 가져오기
+      const currentUser = pb.authStore.model;
+
+      if (!currentUser) {
+        console.error("No logged-in user found");
+        return;
+      }
+
+      // PocketBase에서 사용자 데이터 조회
+      const userRecord = await pb.collection("users").getFirstListItem(
+        `id="${currentUser.id}"`, // 현재 로그인한 사용자 ID로 필터링
+      );
+
+      // 사용자 데이터 확인
+      const { name, address, birth } = userRecord;
+
+      if (!name || !address || !birth) {
+        // name, address, birth 값이 없으면 /signup 페이지로 이동
+        navigate("/signup");
+      } else {
+        // 값이 모두 존재하면 /main 페이지로 이동
+        navigate("/main");
+      }
+    } catch (error) {
+      console.error("Error during Google login:", error);
+    }
+  };
+
   return (
     <div className='App'>
       <Container>
@@ -84,7 +123,7 @@ function Start() {
           JOB SEARCH FOR <br></br> INTERNATIONAL STUDENT
         </SchoolTitle>
         <LoginBox>
-          <LoginButton>Continue with Google</LoginButton>
+          <LoginButton onClick={handleGoogleLogin}>Sign in with Google </LoginButton>
         </LoginBox>
       </Container>
     </div>
@@ -92,3 +131,4 @@ function Start() {
 }
 
 export default Start;
+
