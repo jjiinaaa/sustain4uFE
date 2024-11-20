@@ -151,6 +151,35 @@ const Footer = styled.footer`
   }
 `;
 
+const GoTextLinkBox = styled(Link)`
+  height: 10%;
+  background-color: #005bac;
+  font-family: Pretendard;
+  font-weight: 700;
+  color: #f1f1f1;
+  border-radius: 100px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+
+  @media screen and (max-width: 767px) {
+    width: 70%;
+    margin: 5% auto;
+    padding: 13px 0;
+    font-size: 0.75rem;
+  }
+  @media screen and (min-width: 768px) {
+    width: 30%;
+    margin: 2% auto;
+    padding: 13px 0;
+    font-size: 1rem;
+  }
+`;
+
 const ProhibitedField = () => {
   return (
     <TotalContainer>
@@ -203,7 +232,9 @@ const ProhibitedField = () => {
           </CardTitle>
         </Card>
       </Container>
-      <Footer />
+      <Footer>
+        <GoTextLinkBox to={`/unpermittedmain`}>I understand</GoTextLinkBox>
+      </Footer>
     </TotalContainer>
   );
 };
