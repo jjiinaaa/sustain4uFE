@@ -175,9 +175,7 @@ function Main() {
           <CardSubtitle>근로 허용 시간 확인</CardSubtitle>
         </Card>
 
-        <Card
-          onClick={() => console.log("Navigate to Unpermitted Work Categories")}
-        >
+        <Card to='/unpermittedmain'>
           <ArrowIconTurnBox>
             <ArrowIconTurn src={Arrow} alt='go' />
           </ArrowIconTurnBox>
