@@ -146,8 +146,8 @@ const Specialcase = () => {
             <QuetionImage src={clock} alt='clock' />
           </QuetionImageBox>
           <CardTitle>
-            Exemption from part-time <br></br>employment authorization <br></br>
-            for temporary or routine activities
+            Exemption from part-time employment authorization for temporary or
+            routine activities
           </CardTitle>
         </Card>
 
