@@ -1,8 +1,9 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Tobbar } from "../components/Tobbar";
 import Arrow from "../assets/image/arrow.svg";
 import { Link } from "react-router-dom";
+import pb from "../services/pb";
 
 const TotalContainer = styled.div`
   width: 100%;
@@ -151,12 +152,23 @@ const Footer = styled.footer`
 `;
 
 function Main() {
+  const [userName, setUserName] = useState("USER3124");
+
+  useEffect(() => {
+    const getUserName = async () => {
+      const res = pb.authStore.model;
+      const name = res.name;
+      setUserName(name);
+    };
+    getUserName();
+  }, []);
+
   return (
     <TotalContainer>
       <Tobbar content='MAIN' />
       <Container>
         <MessageContainer>
-          <WelcomeText>Welcome, USER3124</WelcomeText>
+          <WelcomeText>Welcome, {userName}</WelcomeText>
           <Subtitle>
             Part-time notification service <br />
             for Inha University international students

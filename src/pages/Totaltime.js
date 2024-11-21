@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import pb from "../services/pb";
 import styled from "styled-components";
 import { Tobbar } from "../components/Tobbar";
 import totaltimeBG from "../assets/image/totaltimeBG.svg";
@@ -17,7 +18,7 @@ const Container = styled.div`
   @media screen and (max-width: 767px) {
     width: 82%;
     height: 94%;
-    padding: 0 9%;
+    padding: 9% 9%;
   }
   @media screen and (min-width: 768px) {
     width: 60%;
@@ -34,7 +35,7 @@ const Resultcontent = styled.div`
   font-weight: 900;
   font-size: 1rem;
   color: #5c5b5b;
-  margin: 10% auto 1%;
+  margin: 0 auto 1%;
   padding: 0 0 0 2vw;
   text-align: left;
 `;
@@ -171,108 +172,107 @@ const Totaltime = () => {
   const [totalTime, setTotalTime] = useState(0);
 
   useEffect(() => {
-    if (result === "not score" && prop !== "Graduate Student") {
-      setTotalTime(10);
-    } else if (
-      prop === "Associate Degree" ||
-      prop === "Undergrade Student: Grade 1-2"
-    ) {
-      if (result === "TOPIK" || result === "Sejong") {
-        if (
-          score === "Level 3" ||
-          score === "Level 4" ||
-          score === "Level 5" ||
-          score === "Level 6"
-        ) {
-          setTotalTime(25);
-        } else {
-          setTotalTime(10);
-        }
-      } else if (result === "KIIP Level") {
-        if (score === "Level 3" || score === "Level 4" || score === "Level 5") {
-          setTotalTime(25);
-        } else {
-          setTotalTime(10);
-        }
-      } else if (result === "KIIP Score") {
-        if (score >= 61) {
-          setTotalTime(25);
-        } else {
-          setTotalTime(10);
-        }
-      } else {
-        setTotalTime(10);
-      }
-    } else if (prop === "Undergrade Student: Grade 3-4") {
-      if (result === "TOPIK" || result === "Sejong") {
-        if (score === "Level 4" || score === "Level 5" || score === "Level 6") {
-          setTotalTime(25);
-        } else {
-          setTotalTime(10);
-        }
-      } else if (result === "KIIP Level") {
-        if (score === "Level 4" || score === "Level 5") {
-          setTotalTime(25);
-        } else {
-          setTotalTime(10);
-        }
-      } else if (result === "KIIP Score") {
-        if (score >= 81) {
-          setTotalTime(25);
-        } else {
-          setTotalTime(10);
-        }
-      } else {
-        setTotalTime(10);
-      }
-    } else if (prop === "Graduate Student") {
-      if (result === "TOPIK" || result === "Sejong") {
-        if (score === "Level 4" || score === "Level 5" || score === "Level 6") {
-          setTotalTime(30);
-        } else {
-          setTotalTime(15);
-        }
-      } else if (result === "KIIP Level") {
-        if (score === "Level 4" || score === "Level 5") {
-          setTotalTime(30);
-        } else {
-          setTotalTime(15);
-        }
-      } else if (result === "KIIP Score") {
-        if (score >= 81) {
-          setTotalTime(30);
-        } else {
-          setTotalTime(15);
-        }
-      } else {
-        setTotalTime(15);
-      }
-    } else if (prop === "D-4") {
-      if (result === "TOPIK" || result === "Sejong") {
-        if (score === "Level 1") {
-          setTotalTime(10);
-        } else {
-          setTotalTime(20);
-        }
-      } else if (result === "KIIP Level") {
-        if (score === "Level 1") {
-          setTotalTime(10);
-        } else {
-          setTotalTime(20);
-        }
-      } else if (result === "KIIP Score") {
-        if (score >= 41) {
-          setTotalTime(20);
-        } else {
-          setTotalTime(10);
-        }
-      } else {
-        setTotalTime(20);
-      }
-    } else {
-      setTotalTime("알수 없음");
-    }
+    const getUserName = async () => {
+      const res = pb.authStore.model;
+      const name = res.name;
+      setUserName(name);
+    };
+    getUserName();
   }, []);
+
+  useEffect(() => {
+    const timeMapping = {
+      "Associate Degree": {
+        TOPIK: {
+          "Level 3": 25,
+          "Level 4": 25,
+          "Level 5": 25,
+          "Level 6": 25,
+          default: 10,
+        },
+        Sejong: {
+          "Level 3": 25,
+          "Level 4": 25,
+          "Level 5": 25,
+          "Level 6": 25,
+          default: 10,
+        },
+        "KIIP Level": {
+          "Level 3": 25,
+          "Level 4": 25,
+          "Level 5": 25,
+          default: 10,
+        },
+        "KIIP Score": { minScore: 61, high: 25, low: 10 },
+        default: 10,
+      },
+      "Undergrade Student: Grade 1-2": {
+        TOPIK: {
+          "Level 3": 25,
+          "Level 4": 25,
+          "Level 5": 25,
+          "Level 6": 25,
+          default: 10,
+        },
+        Sejong: {
+          "Level 3": 25,
+          "Level 4": 25,
+          "Level 5": 25,
+          "Level 6": 25,
+          default: 10,
+        },
+        "KIIP Level": {
+          "Level 3": 25,
+          "Level 4": 25,
+          "Level 5": 25,
+          default: 10,
+        },
+        "KIIP Score": { minScore: 61, high: 25, low: 10 },
+        default: 10,
+      },
+      "Undergrade Student: Grade 3-4": {
+        TOPIK: { "Level 4": 30, "Level 5": 30, "Level 6": 30, default: 10 },
+        Sejong: { "Level 4": 30, "Level 5": 30, "Level 6": 30, default: 10 },
+        "KIIP Level": { "Level 4": 30, "Level 5": 30, default: 10 },
+        "KIIP Score": { minScore: 81, high: 30, low: 10 },
+        default: 10,
+      },
+      "Graduate Student": {
+        TOPIK: { "Level 4": 35, "Level 5": 35, "Level 6": 35, default: 15 },
+        Sejong: { "Level 4": 35, "Level 5": 35, "Level 6": 35, default: 15 },
+        "KIIP Level": { "Level 4": 35, "Level 5": 35, default: 15 },
+        "KIIP Score": { minScore: 81, high: 35, low: 15 },
+        default: 15,
+      },
+      "D-4": {
+        TOPIK: { "Level 1": 10, default: 20 },
+        Sejong: { "Level 1": 10, default: 20 },
+        "KIIP Level": { "Level 1": 10, default: 20 },
+        "KIIP Score": { minScore: 41, high: 20, low: 10 },
+        default: 20,
+      },
+      default: "알수 없음",
+    };
+
+    const getTotalTime = (prop, result, score) => {
+      const propMapping = timeMapping[prop] || timeMapping.default;
+      if (typeof propMapping === "object") {
+        const resultMapping = propMapping[result] || propMapping.default;
+        if (typeof resultMapping === "object") {
+          if (resultMapping.minScore !== undefined) {
+            return score >= resultMapping.minScore
+              ? resultMapping.high
+              : resultMapping.low;
+          }
+          return resultMapping[score] || resultMapping.default;
+        }
+        return resultMapping;
+      }
+      return propMapping;
+    };
+
+    setTotalTime(getTotalTime(prop, result, score));
+  }, [prop, result, score]);
 
   return (
     <TotalContainer>
