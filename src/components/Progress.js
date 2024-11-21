@@ -17,7 +17,6 @@ const Container = styled.div`
 const ProgressNum = styled.div`
   width: 100%;
   height: 50%;
-  font-family: Pretendard;
   font-weight: 700;
   font-size: 0.75rem;
   color: #5c5b5b;

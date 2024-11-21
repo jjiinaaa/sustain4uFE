@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { Tobbar } from "../components/Tobbar";
-import key2 from "../assets/image/key2.svg";
 
 const TotalContainer = styled.div`
   width: 100%;
@@ -26,33 +25,7 @@ const Container = styled.div`
 
 const QuetionLBox = styled.div`
   width: 80%;
-  margin: 0 auto;
-`;
-
-const QuetionImageBox = styled.div`
-  width: 120px;
-  height: 50%;
-  display: flex;
-  justify-content: center;
-  margin: 0 auto 5%;
-`;
-
-const QuetionImage = styled.img`
-  width: 100%;
-  height: 100%;
-`;
-
-const Subtitle = styled.p`
-  font-weight: 300;
-  color: #5c5b5b;
-  margin: 0 auto 40px;
-  text-align: center;
-  @media screen and (max-width: 767px) {
-    font-size: 0.65rem;
-  }
-  @media screen and (min-width: 768px) {
-    font-size: 0.8rem;
-  }
+  margin: 0 auto 20px;
 `;
 
 const QuetionContent = styled.div`
@@ -77,10 +50,15 @@ const CardBox = styled.div`
 `;
 
 const CardTitle = styled.h2`
-  font-size: 0.8rem; // px :
   font-weight: 500;
   color: #5c5b5b;
   transition: color 0.3s ease;
+  @media screen and (max-width: 767px) {
+    font-size: 0.7rem;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const Footer = styled.footer`
@@ -126,7 +104,7 @@ const GoTextLinkBox = styled.button`
   }
 `;
 
-const Exception = () => {
+const DetailSpecialCase1 = () => {
   const navigate = useNavigate();
   return (
     <TotalContainer>
@@ -134,55 +112,63 @@ const Exception = () => {
       <Container>
         <QuetionLBox>
           <QuetionContent>
-            Exceptions to <br></br>Prohibited Work Fields
+            Here are detailed explanation <br></br> about special cases
           </QuetionContent>
-          <QuetionImageBox>
-            <QuetionImage src={key2} alt='key' />
-          </QuetionImageBox>
-          <Subtitle>
-            If you want to know about the conditions of permission, <br></br>{" "}
-            Click those square icon below and check information
-          </Subtitle>
         </QuetionLBox>
         <CardBox>
           <CardTitle>Manufacturing Business</CardTitle>
         </CardBox>
         <CardBox>
           <CardTitle>
-            Restricted Business such as Manufacturing, Construction, and Mixed
-            Industries <br></br>(as listed in the business registration
-            certificate)
+            When participating as a teaching assistant (including course
+            assistants), library staff, or work-study student receiving
+            compensation from the school
           </CardTitle>
         </CardBox>
         <CardBox>
           <CardTitle>
-            Foreign Language Education Facilities <br></br>for Minors
+            When receiving remuneration or other compensation for temporary,
+            non-professional household assistance or office assistance, such as
+            with domestic helpers
           </CardTitle>
         </CardBox>
         <CardBox>
-          <CardTitle>Conversation Instruction (E-2) Activities</CardTitle>
-        </CardBox>
-        <CardBox>
-          <CardTitle>Part-Time or Full-Time Seasonal Labor</CardTitle>
+          <CardTitle>
+            When receiving payment for non-professional activities such as
+            advice, appraisals, event participation, or temporary (one-time and
+            non-continuous) appearances in films or broadcasts, and other
+            similar activities (Immigration Control Division-4716, July 22,
+            2010)
+          </CardTitle>
         </CardBox>
         <CardBox>
           <CardTitle>
-            Exceptions for Part-Time Employment <br></br>in Specialized Fields
-            <br></br>(E-1~E-7, E-6-2 Excluded)
+            When designated as a police interpreter by the Commissioner General
+            of the National Police Agency and engaged in intermittent
+            interpreting activities according to the assigned schedule and
+            preferences (except when employed as a professional interpreter with
+            salary equivalent to a specialized occupation)
+          </CardTitle>
+        </CardBox>
+        <CardBox>
+          <CardTitle>
+            When participating in a standard field training semester program
+            under the Ministry of Education’s Higher Education Act and the
+            "University Field Training Semester Program Regulations"
           </CardTitle>
         </CardBox>
       </Container>
       <Footer>
         <GoTextLinkBox
           onClick={() => {
-            navigate(`/detailexception`);
+            navigate(`/unpermittedmain`);
           }}
         >
-          Check information
+          I understand
         </GoTextLinkBox>
       </Footer>
     </TotalContainer>
   );
 };
 
-export default Exception;
+export default DetailSpecialCase1;

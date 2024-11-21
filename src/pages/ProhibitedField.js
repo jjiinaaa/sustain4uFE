@@ -1,8 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Tobbar } from "../components/Tobbar";
 import Arrow from "../assets/image/arrow.svg";
-import { Link } from "react-router-dom";
 
 const TotalContainer = styled.div`
   width: 100%;
@@ -39,7 +39,6 @@ const MessageContainer = styled.div`
 `;
 
 const WelcomeText = styled.h1`
-  font-family: Pretendard;
   font-weight: 900;
   color: #5c5b5b;
   @media screen and (max-width: 767px) {
@@ -63,27 +62,8 @@ const CardBox = styled.div`
   flex-direction: column;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
   text-align: left;
-
-  @media screen and (max-width: 767px) {
-    margin: 0 0 5%;
-  }
-  @media screen and (min-width: 768px) {
-    margin: 0 0 2%;
-  }
-`;
-
-const Card = styled(Link)`
-  width: 80%;
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
-  text-align: left;
   position: relative;
   text-decoration: none;
-  cursor: pointer;
 
   @media screen and (max-width: 767px) {
     margin: 0 auto 5%;
@@ -91,9 +71,7 @@ const Card = styled(Link)`
   @media screen and (min-width: 768px) {
     margin: 0 auto 2%;
   }
-
-  &:first-of-type,
-  &:last-of-type {
+  &.active {
     cursor: pointer;
     &:focus,
     &:active {
@@ -112,7 +90,6 @@ const Card = styled(Link)`
 `;
 
 const CardTitle = styled.h2`
-  font-family: Pretendard;
   font-size: 0.8rem; // px :
   font-weight: 500;
   color: #5c5b5b;
@@ -151,10 +128,9 @@ const Footer = styled.footer`
   }
 `;
 
-const GoTextLinkBox = styled(Link)`
+const GoTextLinkBox = styled.button`
   height: 10%;
   background-color: #005bac;
-  font-family: Pretendard;
   font-weight: 700;
   color: #f1f1f1;
   border-radius: 100px;
@@ -169,18 +145,19 @@ const GoTextLinkBox = styled(Link)`
   @media screen and (max-width: 767px) {
     width: 70%;
     margin: 5% auto;
-    padding: 13px 0;
+    padding: 18px 0;
     font-size: 0.75rem;
   }
   @media screen and (min-width: 768px) {
     width: 30%;
-    margin: 2% auto;
-    padding: 13px 0;
+    margin: 25px auto;
+    padding: 20px 0;
     font-size: 1rem;
   }
 `;
 
 const ProhibitedField = () => {
+  const navigate = useNavigate();
   return (
     <TotalContainer>
       <Tobbar content='UNPERMITTED WORKS' />
@@ -190,14 +167,19 @@ const ProhibitedField = () => {
             Prohibited fields <br></br> of work and cases
           </WelcomeText>
         </MessageContainer>
-        <Card to='/conductdistrubing'>
+        <CardBox
+          className='active'
+          onClick={() => {
+            navigate("/conductdistrubing");
+          }}
+        >
           <ArrowIconTurnBox>
             <ArrowIconTurn src={Arrow} alt='conduct disturbing' />
           </ArrowIconTurnBox>
           <CardTitle>
             Conduct disturbing good <br></br>morals or other social order
           </CardTitle>
-        </Card>
+        </CardBox>
         <CardBox>
           <CardTitle>
             Activities in Companies or Employer Workplaces <br></br> Where Visa
@@ -223,17 +205,40 @@ const ProhibitedField = () => {
             cafe, Youth english camp, <br></br>Kids English academy, etc)
           </CardTitle>
         </CardBox>
-        <Card to='/indirect'>
+        <CardBox
+          className='active'
+          onClick={() => {
+            navigate("/indirect");
+          }}
+        >
           <ArrowIconTurnBox>
             <ArrowIconTurn src={Arrow} alt='Indirect Employment' />
           </ArrowIconTurnBox>
           <CardTitle>
             Indirect Employment <br></br> (ex. Delivery rider)
           </CardTitle>
-        </Card>
+        </CardBox>
+        <CardBox>
+          <CardTitle>
+            Dispatched, subcontracted, <br></br>or brokered employment
+            arrangements
+          </CardTitle>
+        </CardBox>
+        <CardBox>
+          <CardTitle>
+            Distant Workplaces <br></br>(Over a 1.5 hour commute from the
+            university or one’s residence)
+          </CardTitle>
+        </CardBox>
       </Container>
       <Footer>
-        <GoTextLinkBox to={`/unpermittedmain`}>I understand</GoTextLinkBox>
+        <GoTextLinkBox
+          onClick={() => {
+            navigate("/unpermittedmain");
+          }}
+        >
+          I understand
+        </GoTextLinkBox>
       </Footer>
     </TotalContainer>
   );

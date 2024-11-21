@@ -37,7 +37,6 @@ const SchoolImg = styled.img`
 
 const Title = styled.h1`
   font-weight: 400;
-  font-family: Pretendard;
   color: #5c5b5b;
   text-align: center;
   margin: 0 auto 20px;
@@ -84,7 +83,7 @@ const Input = styled.input`
   border: none;
   outline: none;
   font-size: 0.5rem;
-  font-family: Pretendard, sans-serif;
+  , sans-serif;
   color: #5c5b5b;
   background-color: transparent;
 
@@ -111,7 +110,7 @@ const Button = styled.button`
   background-color: #005bac;
   color: #ffffff;
   font-size: 1rem;
-  font-family: Pretendard, sans-serif;
+  , sans-serif;
   font-weight: bold;
   padding: 15px 0;
   border: none;

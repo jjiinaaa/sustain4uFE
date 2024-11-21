@@ -49,7 +49,6 @@ const QuetionImage = styled.img`
 const QuetionContent = styled.div`
   width: 100%;
   text-align: center;
-  font-family: Pretendard;
   font-weight: 900;
   font-size: 1.1rem;
   color: #5c5b5b;
@@ -65,7 +64,6 @@ const ButtonContent = styled.button`
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   font-size: 0.75rem;
-  font-family: Pretendard;
   font-weight: 500;
   background-color: ${(props) =>
     props.active === true ? "rgba(0, 91, 172, 0.3)" : "#fff"};
@@ -100,7 +98,6 @@ const GoTextButton = styled.button`
   width: 100%;
   background-color: ${(props) =>
     props.backgroundColor === 1 ? "#005bac" : "#E2E2E2"};
-  font-family: Pretendard;
   font-weight: 700;
   color: ${(props) => (props.backgroundColor === 1 ? "#F1F1F1" : "#5C5B5B")};
   border-radius: 100px;

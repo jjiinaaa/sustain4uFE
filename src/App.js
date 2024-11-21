@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
 import Start from "./pages/Start";
 import SignUp from "./pages/SignUp";
 import Main from "./pages/Main";
@@ -21,39 +22,57 @@ import ProhibitedField from "./pages/ProhibitedField.js";
 import ConductDistrubing from "./pages/ConductDistrubing.js";
 import Indirect from "./pages/Indirect.js";
 import Exception from "./pages/Exception.js";
+import Detailexception from "./pages/Detailexception.js";
 import SpecialCase from "./pages/SpecialCase.js";
+import DetailSpecialCase1 from "./pages/DetailSpecialCase1.js";
+import DetailSpecialCase2 from "./pages/DetailSpecialCase2.js";
+import DetailSpecialCase3 from "./pages/DetailSpecialCase3.js";
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: 'Pretendard';
+  }
+
+`;
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path='/' element={<Start />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/main' element={<Main />} />
-        {/* 세부기능 1 */}
-        <Route path='/checklist1' element={<Checklist1 />} />
-        <Route path='/checklist2' element={<Checklist2 />} />
-        <Route path='/checklist3' element={<Checklist3 />} />
-        <Route path='/visa' element={<Visa />} />
-        <Route path='/grand-attendance1' element={<GrandAttendance1 />} />
-        <Route path='/grand-attendance2' element={<GrandAttendance2 />} />
-        <Route path='/degree' element={<Degree />} />
-        <Route path='/koreanlevel' element={<Koreanlevel />} />
-        <Route path='/topik' element={<Topik />} />
-        <Route path='/kiiplevel' element={<Kiiplevel />} />
-        <Route path='/kiipscore' element={<Kiipscore />} />
-        <Route path='/sejong' element={<Sejong />} />
-        <Route path='/totaltime' element={<Totaltime />} />
-        <Route path='/cannot-job' element={<CannotJob />} />
-        {/* 세부기능 2 */}
-        <Route path='/unpermittedmain' element={<UnpermittedMain />} />
-        <Route path='/prohibitedfield' element={<ProhibitedField />} />
-        <Route path='/conductdistrubing' element={<ConductDistrubing />} />
-        <Route path='/indirect' element={<Indirect />} />
-        <Route path='/exception' element={<Exception />} />
-        <Route path='/specialcase' element={<SpecialCase />} />
-      </Routes>
-    </Router>
+    <>
+      <GlobalStyle />
+      <Router>
+        <Routes>
+          <Route path='/' element={<Start />} />
+          <Route path='/signup' element={<SignUp />} />
+          <Route path='/main' element={<Main />} />
+          {/* 세부기능 1 */}
+          <Route path='/checklist1' element={<Checklist1 />} />
+          <Route path='/checklist2' element={<Checklist2 />} />
+          <Route path='/checklist3' element={<Checklist3 />} />
+          <Route path='/visa' element={<Visa />} />
+          <Route path='/grand-attendance1' element={<GrandAttendance1 />} />
+          <Route path='/grand-attendance2' element={<GrandAttendance2 />} />
+          <Route path='/degree' element={<Degree />} />
+          <Route path='/koreanlevel' element={<Koreanlevel />} />
+          <Route path='/topik' element={<Topik />} />
+          <Route path='/kiiplevel' element={<Kiiplevel />} />
+          <Route path='/kiipscore' element={<Kiipscore />} />
+          <Route path='/sejong' element={<Sejong />} />
+          <Route path='/totaltime' element={<Totaltime />} />
+          <Route path='/cannot-job' element={<CannotJob />} />
+          {/* 세부기능 2 */}
+          <Route path='/unpermittedmain' element={<UnpermittedMain />} />
+          <Route path='/prohibitedfield' element={<ProhibitedField />} />
+          <Route path='/conductdistrubing' element={<ConductDistrubing />} />
+          <Route path='/indirect' element={<Indirect />} />
+          <Route path='/exception' element={<Exception />} />
+          <Route path='/detailexception' element={<Detailexception />} />
+          <Route path='/specialcase' element={<SpecialCase />} />
+          <Route path='/detailspecialcase1' element={<DetailSpecialCase1 />} />
+          <Route path='/detailspecialcase2' element={<DetailSpecialCase2 />} />
+          <Route path='/detailspecialcase3' element={<DetailSpecialCase3 />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 

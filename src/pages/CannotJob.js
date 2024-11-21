@@ -30,7 +30,6 @@ const Resultcontent = styled.div`
   width: 100%;
   max-width: 370px;
   text-align: left;
-  font-family: Pretendard;
   font-weight: 900;
   font-size: 1rem;
   color: #5c5b5b;
@@ -61,7 +60,6 @@ const Background = styled.div`
 const TimeContent = styled.div`
   position: absolute;
   display: block;
-  font-family: Pretendard;
   font-weight: 300;
   color: #5c5b5b;
   transform: translate(-50%, -50%);
@@ -145,7 +143,6 @@ const GoTextLinkBox = styled(Link)`
 const GoTextButton = styled.button`
   width: 100%;
   background-color: #005bac;
-  font-family: Pretendard;
   font-weight: 700;
   color: #f1f1f1;
   border-radius: 100px;

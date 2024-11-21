@@ -40,7 +40,6 @@ const MessageContainer = styled.div`
 `;
 
 const WelcomeText = styled.h1`
-  font-family: Pretendard;
   font-weight: 900;
   color: #5c5b5b;
   @media screen and (max-width: 767px) {
@@ -56,7 +55,6 @@ const WelcomeText = styled.h1`
 `;
 
 const Subtitle = styled.p`
-  font-family: Pretendard;
   font-weight: 300;
   color: #5c5b5b;
   margin: 0;
