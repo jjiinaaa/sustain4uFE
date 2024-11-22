@@ -5,7 +5,7 @@ import { Tobbar } from "../components/Tobbar";
 
 const TotalContainer = styled.div`
   width: 100%;
-  margin-bottom: 100px;
+  height: 100vh;
 `;
 const Container = styled.div`
   width: 100%;
@@ -15,7 +15,7 @@ const Container = styled.div`
   justify-content: center;
   @media screen and (max-width: 767px) {
     width: 82%;
-    height: 81%;
+    height: 85%;
     padding: 0 9% 0;
   }
   @media screen and (min-width: 768px) {
@@ -151,18 +151,6 @@ const Detailexception6 = () => {
                 <br></br>
                 **Work as an intern in the form of training or probation with a
                 stipend in a specialized field Institute
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                Internship Activities for Degree-Seeking Students
-              </TableCell>
-              <TableCell>
-                Permitted to engage in internships at external institutions and
-                companies during vacation periods in specialized fields
-                (E-1~E-7) <br></br>
-                <br></br> **Work as an intern in the form of training or
-                probation with a stipend in a specialized field
               </TableCell>
             </TableRow>
             <TableRow>
