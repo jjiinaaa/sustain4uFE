@@ -16,7 +16,7 @@ const Container = styled.div`
   @media screen and (max-width: 767px) {
     width: 82%;
     height: 81%;
-    padding: 0 9%;
+    padding: 0 9% 0;
   }
   @media screen and (min-width: 768px) {
     width: 40%;
@@ -76,50 +76,6 @@ const QuetionContent = styled.div`
   margin: 5% auto 20px;
 `;
 
-const CardBox = styled.div`
-  width: 80%;
-  background-color: #ffffff;
-  padding: 30px;
-  border: 1px solid #fff;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
-  text-align: left;
-  position: relative;
-  text-decoration: none;
-  cursor: pointer;
-  box-sizing: border-box;
-
-  @media screen and (max-width: 767px) {
-    margin: 0 auto 5%;
-  }
-  @media screen and (min-width: 768px) {
-    margin: 0 auto 2%;
-  }
-  &:focus,
-  &:active {
-    border: 1px solid rgba(0, 91, 172, 1);
-    background-color: rgba(0, 91, 172, 0.3);
-
-    h2,
-    p {
-      color: "#005bac";
-    }
-    div > img {
-      filter: invert(100);
-    }
-  }
-`;
-
-const CardTitle = styled.h2`
-  font-size: 0.7rem;
-  font-weight: 500;
-  color: #5c5b5b;
-  transition: color 0.3s ease;
-  text-align: center;
-`;
-
 const Footer = styled.footer`
   width: 100%;
   position: fixed;
@@ -163,7 +119,7 @@ const GoTextLinkBox = styled.button`
   }
 `;
 
-const Detailexception = () => {
+const Detailexception6 = () => {
   const navigate = useNavigate();
   return (
     <TotalContainer>
@@ -171,73 +127,66 @@ const Detailexception = () => {
       <Container>
         <QuetionLBox>
           <QuetionContent>
-            Here are detailed explanation <br></br> about the prohibited field
+            Exceptions for Part-Time Employment <br></br> In Specialized Fields
           </QuetionContent>
         </QuetionLBox>
         <Table>
           <tbody>
             <TableRow>
-              <TableCell>Permitted Occu-pations & Activities</TableCell>
-              <TableCell>Conditions for Permission</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Manufac- turing Business</TableCell>
+              <TableCell>Supportive Activities (E-1, E-7 excluded)</TableCell>
               <TableCell>
-                One of the following Korean language qualifications must be
-                obtained: - TOPIK Level 4 or above - Completed Level 4 of the
-                Social Integration Program - Obtained 81 points or more in the
-                pre-assessment - Completed Intermediate 2 level at Sejong
-                Institute
+                Support activities such as interpretation/translation
+                assistance, cook's assistant, general office assistance, tourist
+                guide assistance, duty-free store sales assistance, etc.
               </TableCell>
             </TableRow>
             <TableRow>
               <TableCell>
-                Manufac-turing, Construc-tion, MixedIndustries
+                Internship Activities for Students Engaged in Work-Learning
+                Integration
               </TableCell>
               <TableCell>
-                The industry listed in the university-submitted ‘Part-Time
-                Employment Confirmation’ must not be a restricted industry
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                Foreign Language Education Facilities for Minors
-              </TableCell>
-              <TableCell>
-                Submit a criminal record certificate issued by the home
-                country’s government - Submit a medical check-up certificate
-                issued by a Ministry of Justice designated medical institution
-                (including drug test results)
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Conver-sation Instruction (E-2) Activities</TableCell>
-              <TableCell>
-                If a permit for activities outside the stay status is granted
+                Permitted to engage in internships at external institutions and
+                companies related to specialized fields (E-1~E-7) <br></br>
                 <br></br>
-                <br></br>
-                **First violation will be punished according to the rules
-                without leniency
+                **Work as an intern in the form of training or probation with a
+                stipend in a specialized field Institute
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Part-Time or Full-Time Seasonal Labor</TableCell>
               <TableCell>
-                **Refer to the 'Foreign Seasonal Worker Program Basic Plan'
+                Internship Activities for Degree-Seeking Students
+              </TableCell>
+              <TableCell>
+                Permitted to engage in internships at external institutions and
+                companies during vacation periods in specialized fields
+                (E-1~E-7) <br></br>
+                <br></br> **Work as an intern in the form of training or
+                probation with a stipend in a specialized field
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                Internship Activities for Degree-Seeking Students
+              </TableCell>
+              <TableCell>
+                Permitted to engage in internships at external institutions and
+                companies during vacation periods in specialized fields
+                (E-1~E-7) <br></br>
+                <br></br> **Work as an intern in the form of training or
+                probation with a stipend in a specialized field
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Supportive Activities (E-1, E-7 involved)</TableCell>
+              <TableCell>
+                If engaging in part-time employment in a job that requires
+                certain qualifications under domestic law, those qualifications
+                must be met
               </TableCell>
             </TableRow>
           </tbody>
         </Table>
-        <CardBox
-          onClick={() => {
-            navigate("/detailexception6");
-          }}
-        >
-          <CardTitle>
-            Exceptions for Part-Time Employment in Specialized Fields <br></br>
-            (E-1~E-7, E-6-2 Excluded)
-          </CardTitle>
-        </CardBox>
       </Container>
       <Footer>
         <GoTextLinkBox
@@ -252,4 +201,4 @@ const Detailexception = () => {
   );
 };
 
-export default Detailexception;
+export default Detailexception6;

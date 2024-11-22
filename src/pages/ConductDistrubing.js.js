@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Tobbar } from "../components/Tobbar";
 import lock from "../assets/image/lock.svg";
 
@@ -92,7 +92,7 @@ const ButtonContent = styled.div`
   padding: 2% 2%;
 `;
 
-const GoTextLinkBox = styled(Link)`
+const GoTextLinkBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -130,6 +130,7 @@ const GoTextButton = styled.button`
 `;
 
 const Conductdistrubing = () => {
+  const navigate = useNavigate();
   return (
     <TotalContainer>
       <Tobbar content='UNPERMITTED WORKS' />
@@ -175,8 +176,14 @@ const Conductdistrubing = () => {
             Sports facility; <br></br>requiring reporting
           </ButtonContent>
         </ButtonBox>
-        <GoTextLinkBox to={`/unpermittedmain`}>
-          <GoTextButton>Go Next</GoTextButton>
+        <GoTextLinkBox>
+          <GoTextButton
+            onClick={() => {
+              navigate("/detailconductdistrubing");
+            }}
+          >
+            Go Next
+          </GoTextButton>
         </GoTextLinkBox>
       </Container>
     </TotalContainer>

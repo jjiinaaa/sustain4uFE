@@ -116,9 +116,6 @@ const DetailSpecialCase1 = () => {
           </QuetionContent>
         </QuetionLBox>
         <CardBox>
-          <CardTitle>Manufacturing Business</CardTitle>
-        </CardBox>
-        <CardBox>
           <CardTitle>
             When participating as a teaching assistant (including course
             assistants), library staff, or work-study student receiving

@@ -91,6 +91,7 @@ const ButtonContent = styled.div`
 `;
 
 const GoTextLinkBox = styled.button`
+  font-family: "Pretendard";
   height: 10%;
   background-color: #005bac;
   font-weight: 700;
@@ -111,7 +112,7 @@ const GoTextLinkBox = styled.button`
     font-size: 0.75rem;
   }
   @media screen and (min-width: 768px) {
-    width: 30%;
+    width: 50%;
     margin: 2% auto;
     padding: 13px 0;
     font-size: 1rem;

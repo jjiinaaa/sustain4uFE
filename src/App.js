@@ -20,16 +20,18 @@ import CannotJob from "./pages/CannotJob.js";
 import UnpermittedMain from "./pages/UnpermittedMain.js";
 import ProhibitedField from "./pages/ProhibitedField.js";
 import ConductDistrubing from "./pages/ConductDistrubing.js";
+import DetailConductDistrubing from "./pages/DetailConductDistrubing.js";
 import Indirect from "./pages/Indirect.js";
 import Exception from "./pages/Exception.js";
 import Detailexception from "./pages/Detailexception.js";
+import Detailexception6 from "./pages/Detailexception6.js";
 import SpecialCase from "./pages/SpecialCase.js";
 import DetailSpecialCase1 from "./pages/DetailSpecialCase1.js";
 import DetailSpecialCase2 from "./pages/DetailSpecialCase2.js";
 import DetailSpecialCase3 from "./pages/DetailSpecialCase3.js";
 
 const GlobalStyle = createGlobalStyle`
-  body {
+  body, * {
     font-family: 'Pretendard';
   }
 
@@ -63,9 +65,14 @@ function App() {
           <Route path='/unpermittedmain' element={<UnpermittedMain />} />
           <Route path='/prohibitedfield' element={<ProhibitedField />} />
           <Route path='/conductdistrubing' element={<ConductDistrubing />} />
+          <Route
+            path='detailconductdistrubing'
+            element={<DetailConductDistrubing />}
+          />
           <Route path='/indirect' element={<Indirect />} />
           <Route path='/exception' element={<Exception />} />
           <Route path='/detailexception' element={<Detailexception />} />
+          <Route path='/detailexception6' element={<Detailexception6 />} />
           <Route path='/specialcase' element={<SpecialCase />} />
           <Route path='/detailspecialcase1' element={<DetailSpecialCase1 />} />
           <Route path='/detailspecialcase2' element={<DetailSpecialCase2 />} />

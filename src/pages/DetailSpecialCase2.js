@@ -86,6 +86,12 @@ const CardTitle = styled.h2`
   }
 `;
 
+const Hylight = styled.span`
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: #005bac;
+`;
+
 const Footer = styled.footer`
   width: 100%;
   position: fixed;
@@ -144,13 +150,13 @@ const DetailSpecialCase2 = () => {
         <CardContainer>
           <CardBox>
             <CardTitle>
-              ON-CAMPUS <br></br>
+              <Hylight>ON-CAMPUS</Hylight> <br></br>
               <br></br> Exemption from <br></br>authorization
             </CardTitle>
           </CardBox>
           <CardBox>
             <CardTitle>
-              ON-CAMPUS <br></br>
+              <Hylight>OFF-CAMPUS</Hylight> <br></br>
               <br></br>Authorization <br></br> required
             </CardTitle>
           </CardBox>
@@ -159,13 +165,15 @@ const DetailSpecialCase2 = () => {
         <CardContainer>
           <CardBox>
             <CardTitle>
-              ON-CAMPUS<br></br>
+              <Hylight>ON-CAMPUS</Hylight>
+              <br></br>
               <br></br> Authorization <br></br> required
             </CardTitle>
           </CardBox>
           <CardBox>
             <CardTitle>
-              OFF-CAMPUS<br></br>
+              <Hylight>OFF-CAMPUS</Hylight>
+              <br></br>
               <br></br> Authorization <br></br>required
             </CardTitle>
           </CardBox>

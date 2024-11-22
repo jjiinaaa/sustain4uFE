@@ -15,8 +15,8 @@ const Container = styled.div`
   justify-content: center;
   @media screen and (max-width: 767px) {
     width: 82%;
-    height: 81%;
-    padding: 0 9%;
+    height: 84%;
+    padding: 09%;
   }
   @media screen and (min-width: 768px) {
     width: 40%;
@@ -76,50 +76,6 @@ const QuetionContent = styled.div`
   margin: 5% auto 20px;
 `;
 
-const CardBox = styled.div`
-  width: 80%;
-  background-color: #ffffff;
-  padding: 30px;
-  border: 1px solid #fff;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
-  text-align: left;
-  position: relative;
-  text-decoration: none;
-  cursor: pointer;
-  box-sizing: border-box;
-
-  @media screen and (max-width: 767px) {
-    margin: 0 auto 5%;
-  }
-  @media screen and (min-width: 768px) {
-    margin: 0 auto 2%;
-  }
-  &:focus,
-  &:active {
-    border: 1px solid rgba(0, 91, 172, 1);
-    background-color: rgba(0, 91, 172, 0.3);
-
-    h2,
-    p {
-      color: "#005bac";
-    }
-    div > img {
-      filter: invert(100);
-    }
-  }
-`;
-
-const CardTitle = styled.h2`
-  font-size: 0.7rem;
-  font-weight: 500;
-  color: #5c5b5b;
-  transition: color 0.3s ease;
-  text-align: center;
-`;
-
 const Footer = styled.footer`
   width: 100%;
   position: fixed;
@@ -136,6 +92,7 @@ const Footer = styled.footer`
 `;
 
 const GoTextLinkBox = styled.button`
+  font-family: "Pretendard";
   height: 10%;
   background-color: #005bac;
   font-weight: 700;
@@ -163,7 +120,7 @@ const GoTextLinkBox = styled.button`
   }
 `;
 
-const Detailexception = () => {
+const DetailConductDistrubing = () => {
   const navigate = useNavigate();
   return (
     <TotalContainer>
@@ -177,67 +134,55 @@ const Detailexception = () => {
         <Table>
           <tbody>
             <TableRow>
-              <TableCell>Permitted Occu-pations & Activities</TableCell>
-              <TableCell>Conditions for Permission</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Manufac- turing Business</TableCell>
+              <TableCell>Game-providing business</TableCell>
               <TableCell>
-                One of the following Korean language qualifications must be
-                obtained: - TOPIK Level 4 or above - Completed Level 4 of the
-                Social Integration Program - Obtained 81 points or more in the
-                pre-assessment - Completed Intermediate 2 level at Sejong
-                Institute
+                The term "game providing business" means business of providing
+                game products so that the public may use such products:
               </TableCell>
             </TableRow>
             <TableRow>
+              <TableCell>Combined distribution business</TableCell>
               <TableCell>
-                Manufac-turing, Construc-tion, MixedIndustries
-              </TableCell>
-              <TableCell>
-                The industry listed in the university-submitted ‘Part-Time
-                Employment Confirmation’ must not be a restricted industry
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                Foreign Language Education Facilities for Minors
-              </TableCell>
-              <TableCell>
-                Submit a criminal record certificate issued by the home
-                country’s government - Submit a medical check-up certificate
-                issued by a Ministry of Justice designated medical institution
-                (including drug test results)
+                The term "combined distribution and game providing business"
+                means youth game providing business, or business of providing
+                Internet computer game facilities, in combination with another
+                business under this Act or a business under other statutes at
+                the same location; Institute
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Conver-sation Instruction (E-2) Activities</TableCell>
+              <TableCell>Running a videoviewing establish-ment</TableCell>
               <TableCell>
-                If a permit for activities outside the stay status is granted
-                <br></br>
-                <br></br>
-                **First violation will be punished according to the rules
-                without leniency
+                The business of running a video-viewing establishment: Business
+                offering video products to the public for the purpose of their
+                viewing with multiple partitioned video-viewing compartments and
+                video-viewing apparatuses installed therein (including where
+                customers operate the viewing machine by themselves);
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Part-Time or Full-Time Seasonal Labor</TableCell>
+              <TableCell>Karaoke business</TableCell>
               <TableCell>
-                **Refer to the 'Foreign Seasonal Worker Program Basic Plan'
+                The term "lodging business" means the business of rendering such
+                services as facilities and accommodations, so as to make
+                customers able to sleep and stay: Provided, That the case as
+                prescribed by Presidential Decree shall be excluded, such as
+                private houses taking lodgings, which are located in
+                agricultural and fishery villages;
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Lodging business</TableCell>
+              <TableCell>
+                The term "karaoke business" means a business that provides the
+                general public with the use of accompaniment machines, with or
+                without images, and other facilities, along with which people
+                can sing songs in the accompaniment of pre-recorded music
+                without performers of any instrument;
               </TableCell>
             </TableRow>
           </tbody>
         </Table>
-        <CardBox
-          onClick={() => {
-            navigate("/detailexception6");
-          }}
-        >
-          <CardTitle>
-            Exceptions for Part-Time Employment in Specialized Fields <br></br>
-            (E-1~E-7, E-6-2 Excluded)
-          </CardTitle>
-        </CardBox>
       </Container>
       <Footer>
         <GoTextLinkBox
@@ -252,4 +197,4 @@ const Detailexception = () => {
   );
 };
 
-export default Detailexception;
+export default DetailConductDistrubing;

@@ -110,7 +110,6 @@ const ArrowIconTurn = styled.img`
   width: 70%;
   height: 80%;
   transform: rotate(180deg);
-  // 이미지에 후버시에 색 변경을 주고 싶다면 아래와 같이 작성
 `;
 
 const Footer = styled.footer`
