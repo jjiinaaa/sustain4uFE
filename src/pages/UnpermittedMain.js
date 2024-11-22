@@ -1,8 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Tobbar } from "../components/Tobbar";
 import Arrow from "../assets/image/arrow.svg";
-import { Link } from "react-router-dom";
 
 const TotalContainer = styled.div`
   width: 100%;
@@ -13,10 +13,11 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   @media screen and (max-width: 767px) {
     width: 82%;
-    height: 81%;
+    height: 90%;
     margin-top: 5%;
     padding: 0 9%;
   }
@@ -39,7 +40,6 @@ const MessageContainer = styled.div`
 `;
 
 const WelcomeText = styled.h1`
-  font-family: Pretendard;
   font-weight: 900;
   color: #5c5b5b;
   @media screen and (max-width: 767px) {
@@ -54,7 +54,7 @@ const WelcomeText = styled.h1`
   }
 `;
 
-const Card = styled(Link)`
+const Card = styled.div`
   width: 80%;
   background-color: #ffffff;
   padding: 30px;
@@ -112,10 +112,9 @@ const ArrowIconTurn = styled.img`
   width: 70%;
   height: 80%;
   transform: rotate(180deg);
-  // 이미지에 후버시에 색 변경을 주고 싶다면 아래와 같이 작성
 `;
 
-const GoTextLinkBox = styled(Link)`
+const GoTextLinkBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -134,7 +133,6 @@ const GoTextLinkBox = styled(Link)`
 const GoTextButton = styled.button`
   width: 100%;
   background-color: #005bac;
-  font-family: Pretendard;
   font-weight: 700;
   color: #f1f1f1;
   border-radius: 100px;
@@ -154,6 +152,7 @@ const GoTextButton = styled.button`
 `;
 
 const UnpermittedMain = () => {
+  const navigate = useNavigate();
   return (
     <TotalContainer>
       <Tobbar content='UNPERMITTED WORKS' />
@@ -165,7 +164,11 @@ const UnpermittedMain = () => {
             Prohibited work fields?
           </WelcomeText>
         </MessageContainer>
-        <Card to='/prohibitedfield'>
+        <Card
+          onClick={() => {
+            navigate("/prohibitedfield");
+          }}
+        >
           <ArrowIconTurnBox>
             <ArrowIconTurn src={Arrow} alt='go' />
           </ArrowIconTurnBox>
@@ -174,7 +177,11 @@ const UnpermittedMain = () => {
           </CardTitle>
         </Card>
 
-        <Card to='/exception'>
+        <Card
+          onClick={() => {
+            navigate("/exception");
+          }}
+        >
           <ArrowIconTurnBox>
             <ArrowIconTurn src={Arrow} alt='go' />
           </ArrowIconTurnBox>
@@ -183,7 +190,11 @@ const UnpermittedMain = () => {
           </CardTitle>
         </Card>
 
-        <Card to='/specialcase'>
+        <Card
+          onClick={() => {
+            navigate("/specialcase");
+          }}
+        >
           <ArrowIconTurnBox>
             <ArrowIconTurn src={Arrow} alt='go' />
           </ArrowIconTurnBox>
@@ -191,8 +202,14 @@ const UnpermittedMain = () => {
             Special Cases for Part-Time <br></br>Employment Authorization
           </CardTitle>
         </Card>
-        <GoTextLinkBox to={`/main`}>
-          <GoTextButton>Back to Main</GoTextButton>
+        <GoTextLinkBox>
+          <GoTextButton
+            onClick={() => {
+              navigate("/main");
+            }}
+          >
+            Back to Main
+          </GoTextButton>
         </GoTextLinkBox>
       </Container>
     </TotalContainer>

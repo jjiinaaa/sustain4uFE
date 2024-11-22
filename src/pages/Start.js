@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import plane from "../assets/image/plane.svg";
-import { useNavigate } from 'react-router-dom';
-import pb from '../services/pb';
-
+import { useNavigate } from "react-router-dom";
+import pb from "../services/pb";
 
 const Container = styled.div`
   width: 100%;
@@ -32,7 +31,6 @@ const SchoolImg = styled.img`
 
 const SchoolTitle = styled.h1`
   font-weight: 400;
-  font-family: Pretendard;
   color: #5c5b5b;
   text-align: center;
   margin: 0 auto 34px;
@@ -58,7 +56,6 @@ const LoginBox = styled.div`
 const LoginButton = styled.button`
   width: 100%;
   background-color: #005bac;
-  font-family: Pretendard;
   font-weight: 700;
   color: white;
   border-radius: 100px;
@@ -95,7 +92,7 @@ function Start() {
 
       // PocketBase에서 사용자 데이터 조회
       const userRecord = await pb.collection("users").getFirstListItem(
-        `id="${currentUser.id}"`, // 현재 로그인한 사용자 ID로 필터링
+        `id="${currentUser.id}"` // 현재 로그인한 사용자 ID로 필터링
       );
 
       // 사용자 데이터 확인
@@ -123,7 +120,9 @@ function Start() {
           JOB SEARCH FOR <br></br> INTERNATIONAL STUDENT
         </SchoolTitle>
         <LoginBox>
-          <LoginButton onClick={handleGoogleLogin}>Sign in with Google </LoginButton>
+          <LoginButton onClick={handleGoogleLogin}>
+            Sign in with Google{" "}
+          </LoginButton>
         </LoginBox>
       </Container>
     </div>
@@ -131,4 +130,3 @@ function Start() {
 }
 
 export default Start;
-

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import plane from "../assets/image/plane.svg";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import pb from "../services/pb";
 
 const Container = styled.div`
@@ -37,7 +37,6 @@ const SchoolImg = styled.img`
 
 const Title = styled.h1`
   font-weight: 400;
-  font-family: Pretendard;
   color: #5c5b5b;
   text-align: center;
   margin: 0 auto 20px;
@@ -54,12 +53,10 @@ const InputBox = styled.div.attrs((props) => ({
   isValid: props.isValid,
 }))`
   width: 100%;
-  max-width: 350px;
   background-color: #ffffff;
   border: ${(props) =>
     props.isValid ? "1px solid #dcdcdc" : "1px solid #ff4d4d"};
   border-radius: 8px;
-  padding: 10px 15px;
   margin-bottom: 15px;
   box-shadow: ${(props) =>
     props.isValid
@@ -69,11 +66,16 @@ const InputBox = styled.div.attrs((props) => ({
   align-items: center;
 
   @media screen and (max-width: 767px) {
-    max-width: 300px;
+    width: 80%;
     padding: 8px 12px;
+    margin-bottom: 15px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 20%;
+    min-width: 350px;
+    padding: 12px 18px;
   }
 `;
-
 
 const Input = styled.input`
   flex: 1;
@@ -81,12 +83,15 @@ const Input = styled.input`
   border: none;
   outline: none;
   font-size: 0.5rem;
-  font-family: Pretendard, sans-serif;
+  , sans-serif;
   color: #5c5b5b;
   background-color: transparent;
 
   @media screen and (max-width: 767px) {
     font-size: 0.7rem;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: 1rem;
   }
 `;
 
@@ -105,7 +110,7 @@ const Button = styled.button`
   background-color: #005bac;
   color: #ffffff;
   font-size: 1rem;
-  font-family: Pretendard, sans-serif;
+  , sans-serif;
   font-weight: bold;
   padding: 15px 0;
   border: none;
@@ -146,16 +151,15 @@ function Signup() {
   };
 
   const validateForm = () => {
-    const nameRegex = /^[A-Za-z\s]+$/; 
+    const nameRegex = /^[A-Za-z\s]+$/;
     const newErrors = {
-      name: formData.name.trim() === "" || !nameRegex.test(formData.name), 
+      name: formData.name.trim() === "" || !nameRegex.test(formData.name),
       address: formData.address.trim() === "",
       birthDate: !/^\d{2}-\d{2}-\d{4}$/.test(formData.birthDate),
     };
     setErrors(newErrors);
     return !Object.values(newErrors).some((error) => error);
   };
-  
 
   const handleSubmit = async () => {
     if (validateForm()) {
@@ -169,15 +173,17 @@ function Signup() {
         }
 
         const data = {
-          email: email, 
+          email: email,
           name: formData.name,
           address: formData.address,
           birth: formData.birthDate,
         };
 
-        const record = await pb.collection("users").update(currentUser.id, data);
+        const record = await pb
+          .collection("users")
+          .update(currentUser.id, data);
         console.log("User information updated:", record);
-        navigate('/main');
+        navigate("/main");
       } catch (error) {
         console.error("Error saving user data:", error);
       }
@@ -189,7 +195,7 @@ function Signup() {
   return (
     <Container>
       <SchoolImgBox>
-        <SchoolImg src={plane} alt="Airplane" />
+        <SchoolImg src={plane} alt='Airplane' />
       </SchoolImgBox>
       <Title>
         JOB SEARCH FOR
@@ -198,8 +204,8 @@ function Signup() {
       </Title>
       <InputBox isValid={!errors.name}>
         <Input
-          type="text"
-          placeholder="Name (Firstname Lastname)"
+          type='text'
+          placeholder='Name (Firstname Lastname)'
           value={formData.name}
           onChange={(e) => handleInputChange("name", e.target.value)}
         />
@@ -207,8 +213,8 @@ function Signup() {
       </InputBox>
       <InputBox isValid={!errors.address}>
         <Input
-          type="text"
-          placeholder="Address (Home Country)"
+          type='text'
+          placeholder='Address (Home Country)'
           value={formData.address}
           onChange={(e) => handleInputChange("address", e.target.value)}
         />
@@ -216,8 +222,8 @@ function Signup() {
       </InputBox>
       <InputBox isValid={!errors.birthDate}>
         <Input
-          type="text"
-          placeholder="Birth Date (DD-MM-YYYY)"
+          type='text'
+          placeholder='Birth Date (DD-MM-YYYY)'
           value={formData.birthDate}
           onChange={(e) => handleInputChange("birthDate", e.target.value)}
         />
