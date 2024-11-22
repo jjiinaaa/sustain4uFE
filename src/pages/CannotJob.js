@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Tobbar } from "../components/Tobbar";
 import CannotJobBG from "../assets/image/cannotJobBG.svg";
+import pb from "../services/pb";
 
 const TotalContainer = styled.div`
   width: 100%;
@@ -163,6 +164,13 @@ const GoTextButton = styled.button`
 
 const CannotJob = () => {
   const [userName, setUserName] = useState("USER3142");
+  useEffect(() => {
+    const getUserName = async () => {
+      const res = pb.authStore.model;
+      setUserName(res.name);
+    };
+    getUserName();
+  }, []);
 
   return (
     <TotalContainer>
