@@ -22,7 +22,7 @@ const Container = styled.div`
   }
   @media screen and (min-width: 768px) {
     width: 60%;
-    height: 84%;
+    height: 94%;
     padding: 0 20%;
   }
 `;
