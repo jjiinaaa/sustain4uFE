@@ -7,7 +7,6 @@ const TobbarContainer = styled.div`
   position: relative;
   z-index: 9999;
   background-color: #fff;
-  font-family: Pretendard;
   font-weight: 900;
   color: #5c5b5b;
   text-align: center;

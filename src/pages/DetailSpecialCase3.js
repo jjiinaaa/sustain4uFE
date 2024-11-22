@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { Tobbar } from "../components/Tobbar";
-import key2 from "../assets/image/key2.svg";
 
 const TotalContainer = styled.div`
   width: 100%;
-  margin-bottom: 100px;
+  height: 100vh;
 `;
 const Container = styled.div`
   width: 100%;
@@ -26,33 +25,7 @@ const Container = styled.div`
 
 const QuetionLBox = styled.div`
   width: 80%;
-  margin: 0 auto;
-`;
-
-const QuetionImageBox = styled.div`
-  width: 120px;
-  height: 50%;
-  display: flex;
-  justify-content: center;
-  margin: 0 auto 5%;
-`;
-
-const QuetionImage = styled.img`
-  width: 100%;
-  height: 100%;
-`;
-
-const Subtitle = styled.p`
-  font-weight: 300;
-  color: #5c5b5b;
-  margin: 0 auto 40px;
-  text-align: center;
-  @media screen and (max-width: 767px) {
-    font-size: 0.65rem;
-  }
-  @media screen and (min-width: 768px) {
-    font-size: 0.8rem;
-  }
+  margin: 0 auto 20px;
 `;
 
 const QuetionContent = styled.div`
@@ -77,10 +50,29 @@ const CardBox = styled.div`
 `;
 
 const CardTitle = styled.h2`
-  font-size: 0.8rem; // px :
   font-weight: 500;
   color: #5c5b5b;
-  transition: color 0.3s ease;
+  @media screen and (max-width: 767px) {
+    font-size: 0.7rem;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: 0.8rem;
+  }
+`;
+const Subtitle = styled.div`
+  width: 100%;
+  text-align: left;
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: #5c5b5b;
+  margin: 0 auto 20px;
+  padding-left: 6%;
+`;
+
+const Hylight = styled.span`
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: #005bac;
 `;
 
 const Footer = styled.footer`
@@ -126,7 +118,7 @@ const GoTextLinkBox = styled.button`
   }
 `;
 
-const Exception = () => {
+const DetailSpecialCase3 = () => {
   const navigate = useNavigate();
   return (
     <TotalContainer>
@@ -134,55 +126,43 @@ const Exception = () => {
       <Container>
         <QuetionLBox>
           <QuetionContent>
-            Exceptions to <br></br>Prohibited Work Fields
+            Here are detailed explanation <br></br> about special cases
           </QuetionContent>
-          <QuetionImageBox>
-            <QuetionImage src={key2} alt='key' />
-          </QuetionImageBox>
-          <Subtitle>
-            If you want to know about the conditions of permission, <br></br>{" "}
-            Click those square icon below and check information
-          </Subtitle>
         </QuetionLBox>
-        <CardBox>
-          <CardTitle>Manufacturing Business</CardTitle>
-        </CardBox>
+        <Subtitle>Categories</Subtitle>
         <CardBox>
           <CardTitle>
-            Restricted Business such as Manufacturing, Construction, and Mixed
-            Industries <br></br>(as listed in the business registration
-            certificate)
+            <Hylight>STANDARD INTERNSHIP</Hylight>
+            <br></br>
+            <br></br>Exemption from authorization
           </CardTitle>
         </CardBox>
         <CardBox>
           <CardTitle>
-            Foreign Language Education Facilities <br></br>for Minors
+            <Hylight>MANDATORY INTERNSHIP</Hylight>
+            <br></br>
+            <br></br>Exemption from authorization
           </CardTitle>
         </CardBox>
         <CardBox>
-          <CardTitle>Conversation Instruction (E-2) Activities</CardTitle>
-        </CardBox>
-        <CardBox>
-          <CardTitle>Part-Time or Full-Time Seasonal Labor</CardTitle>
-        </CardBox>
-        <CardBox>
           <CardTitle>
-            Exceptions for Part-Time Employment <br></br>in Specialized Fields
-            <br></br>(E-1~E-7, E-6-2 Excluded)
+            <Hylight>SELF-DIRECTED INTERNSHIP</Hylight>
+            <br></br>
+            <br></br>Authorization required
           </CardTitle>
         </CardBox>
       </Container>
       <Footer>
         <GoTextLinkBox
           onClick={() => {
-            navigate(`/detailexception`);
+            navigate(`/unpermittedmain`);
           }}
         >
-          Check information
+          I understand
         </GoTextLinkBox>
       </Footer>
     </TotalContainer>
   );
 };
 
-export default Exception;
+export default DetailSpecialCase3;
