@@ -29,6 +29,9 @@ import SpecialCase from "./pages/SpecialCase.js";
 import DetailSpecialCase1 from "./pages/DetailSpecialCase1.js";
 import DetailSpecialCase2 from "./pages/DetailSpecialCase2.js";
 import DetailSpecialCase3 from "./pages/DetailSpecialCase3.js";
+import EmployerInfo from "./pages/EmployerInfo.js";
+import WorkInfo from "./pages/WorkInfo.js";
+import WorkingHours from "./pages/WorkingHours.js";
 
 const GlobalStyle = createGlobalStyle`
   body, * {
@@ -77,6 +80,10 @@ function App() {
           <Route path='/detailspecialcase1' element={<DetailSpecialCase1 />} />
           <Route path='/detailspecialcase2' element={<DetailSpecialCase2 />} />
           <Route path='/detailspecialcase3' element={<DetailSpecialCase3 />} />
+          {/* 세부기능 3 */}
+          <Route path='/employerinfo' element={<EmployerInfo />} />
+          <Route path='/workinfo' element={<WorkInfo />} />
+          <Route path='/workinghours' element={<WorkingHours />} />
         </Routes>
       </Router>
     </>
