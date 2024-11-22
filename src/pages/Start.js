@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import plane from "../assets/image/plane.svg";
+import googleLogo from "../assets/image/googleLogo.svg";
 import { useNavigate } from "react-router-dom";
 import pb from "../services/pb";
 
@@ -9,6 +10,7 @@ const Container = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
 `;
 
@@ -53,23 +55,37 @@ const LoginBox = styled.div`
   }
 `;
 
-const LoginButton = styled.button`
-  width: 100%;
-  background-color: #005bac;
-  font-weight: 700;
-  color: white;
-  border-radius: 100px;
-  border: none;
-  text-align: center;
+// Google 로그인 버튼 스타일
+const GoogleLoginButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 230px;
+  margin: 0 auto;
+  height: 40px;
+  background-color: #ffffff;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  font-size: 0.8rem; //
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  color: #5c5b5b;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 0 8px; /* 텍스트 좌우 여백 설정 */
 
-  @media screen and (max-width: 767px) {
-    padding: 13px 0;
-    font-size: 0.75rem;
+  &:hover {
+    background-color: #f7f8f9;
   }
-  @media screen and (min-width: 768px) {
-    padding: 13px 0;
-    font-size: 1rem;
+
+  &:active {
+    background-color: #e8e9ea;
+  }
+
+  img {
+    width: 18px; /* 로고 크기 */
+    height: 18px;
+    margin-right: 24px; /* 로고와 텍스트 사이 간격 */
   }
 `;
 
@@ -120,9 +136,14 @@ function Start() {
           JOB SEARCH FOR <br></br> INTERNATIONAL STUDENT
         </SchoolTitle>
         <LoginBox>
-          <LoginButton onClick={handleGoogleLogin}>
-            Sign in with Google{" "}
-          </LoginButton>
+          <GoogleLoginButton
+            onClick={() => {
+              handleGoogleLogin();
+            }}
+          >
+            <img src={googleLogo} alt='Google Logo' />
+            Login In with Google
+          </GoogleLoginButton>
         </LoginBox>
       </Container>
     </div>
