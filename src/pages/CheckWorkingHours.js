@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import clock from "../assets/image/clock.svg";
 import bag from "../assets/image/bag.svg";
+import pb from "../services/pb";
 
 const TotalContainer = styled.div`
   width: 100%;
@@ -70,12 +71,15 @@ const SubText = styled.p`
 `;
 
 const Card = styled.div`
+  // active가 true면 border-color #ff0000
+  border: 1px solid ${(props) => (props.active ? "#ff0000" : "f2f2f2")};
+  box-shadow: 0px 0px 8px
+    ${(props) => (props.active ? "rgba(255, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.1)")};
   width: 70%;
   background-color: #ffffff;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
   position: relative;
   text-decoration: none;
@@ -116,6 +120,17 @@ const HighlightedText = styled.span`
   font-size: 1.5rem;
 `;
 
+const HighlightedError = styled.span`
+  color: #ff0000;
+  font-weight: 500;
+  @media screen and (max-width: 767px) {
+    font-size: 0.6rem;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: 0.8rem;
+  }
+`;
+
 const Button = styled(Link)`
   background-color: #005bac;
   font-family: Pretendard;
@@ -148,6 +163,8 @@ function CheckWorkingHours() {
   const { state } = location;
   const { workingHoursData, selectedDaysData } = location.state;
   const workingDayOfWeek = selectedDaysData.length;
+  const maxTime = pb.authStore.model.maxtime;
+  const [active, setActive] = useState(false);
 
   useEffect(() => {
     const hoursWorked = calculateWorkingHours(
@@ -156,7 +173,8 @@ function CheckWorkingHours() {
     ); // 하루에 일한 시간
 
     setTotalWorkedTime(hoursWorked * workingDayOfWeek);
-  }, [workingHoursData, workingDayOfWeek]);
+    checkmaxTime();
+  }, []);
 
   const calculateWorkingHours = (startTime, endTime) => {
     const [startHours, startMinutes] = startTime.split(":").map(Number);
@@ -184,6 +202,19 @@ function CheckWorkingHours() {
     }
   };
 
+  const checkmaxTime = async () => {
+    console.log(totalWorkedTime, maxTime);
+    if (isNaN(totalWorkedTime)) {
+      setActive(false);
+      return;
+    }
+    if (totalWorkedTime < maxTime) {
+      setActive(true);
+    } else {
+      setActive(false);
+    }
+  };
+
   return (
     <TotalContainer>
       <Tobbar content='STANDARD LABOR CONTRACT' />
@@ -194,14 +225,26 @@ function CheckWorkingHours() {
           </FirstText>
           <SubText>Working Hours</SubText>
         </MessageContainer>
-        <Card>
+        <Card active={active}>
           <QuetionImageBox>
             <QuetionImage src={clock} alt='clock' />
           </QuetionImageBox>
           <CardTitle>
-            <HighlightedText>{totalWorkedTime}H</HighlightedText>
+            <HighlightedText>
+              {isNaN(totalWorkedTime) ? 0 : totalWorkedTime}H
+            </HighlightedText>
             <br></br>
             <br></br>This is your total work hour
+            {totalWorkedTime > maxTime ? (
+              <>
+                <br></br>
+                <HighlightedError>
+                  You've exceeded your maximum working hours.
+                </HighlightedError>
+              </>
+            ) : (
+              ""
+            )}
           </CardTitle>
         </Card>
 

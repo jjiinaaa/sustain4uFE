@@ -106,7 +106,7 @@ const Contract = () => {
     monthWage,
     paymentMethodsData,
   } = location.state;
-  const { name, address, birth } = pb.authStore.baseModel;
+  const { name, address, birth } = pb.authStore.model;
   return (
     <TotalContainer>
       <Tobbar content='STANDARD LABOR CONTRACT' />

@@ -282,8 +282,7 @@ const Totaltime = () => {
         maxtime: maxtime,
       };
 
-      const record = await pb.collection("users").update(currentUser.id, data);
-      console.log("User information updated:", record);
+      await pb.collection("users").update(currentUser.id, data);
     } catch (error) {
       console.error("Error saving user data:", error);
     }

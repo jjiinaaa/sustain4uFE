@@ -14,17 +14,16 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   @media screen and (max-width: 767px) {
     width: 82%;
     height: 81%;
-    margin-top: 5%;
     padding: 0 9%;
   }
   @media screen and (min-width: 768px) {
     width: 70%;
     height: 82%;
-    margin-top: 4%;
     padding: 0 15%;
   }
 `;
@@ -87,6 +86,10 @@ const Card = styled.div`
   }
   @media screen and (min-width: 768px) {
     margin: 0 0 2%;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
   }
 
   &:focus,

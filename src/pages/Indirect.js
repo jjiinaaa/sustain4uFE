@@ -15,7 +15,7 @@ const Container = styled.div`
   @media screen and (max-width: 767px) {
     width: 82%;
     height: 81%;
-    padding: 0 9%;
+    padding: 9% 9%;
   }
   @media screen and (min-width: 768px) {
     width: 40%;
@@ -90,9 +90,24 @@ const ButtonContent = styled.div`
   text-align: center;
 `;
 
-const GoTextLinkBox = styled.button`
-  font-family: "Pretendard";
-  height: 10%;
+const GoTextLinkBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+
+  @media screen and (max-width: 767px) {
+    width: 90%;
+    margin: 50px auto 0;
+  }
+  @media screen and (min-width: 768px) {
+    width: 40%;
+    margin: 50px auto 0;
+  }
+`;
+
+const GoTextButton = styled.button`
+  width: 100%;
   background-color: #005bac;
   font-weight: 700;
   color: #f1f1f1;
@@ -100,25 +115,16 @@ const GoTextLinkBox = styled.button`
   border: none;
   text-align: center;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
 
   @media screen and (max-width: 767px) {
-    width: 70%;
-    margin: 5% auto;
-    padding: 18px 0;
+    padding: 13px 0;
     font-size: 0.75rem;
   }
   @media screen and (min-width: 768px) {
-    width: 50%;
-    margin: 2% auto;
     padding: 13px 0;
     font-size: 1rem;
   }
 `;
-
 const Indirect = () => {
   const navigate = useNavigate();
   return (
@@ -153,12 +159,14 @@ const Indirect = () => {
           <ButtonContent>Private tutors</ButtonContent>
           <ButtonContent>Door-to-door salespersons</ButtonContent>
         </ButtonBox>
-        <GoTextLinkBox
-          onClick={() => {
-            navigate("/unpermittedmain");
-          }}
-        >
-          I understand
+        <GoTextLinkBox>
+          <GoTextButton
+            onClick={() => {
+              navigate("/unpermittedmain");
+            }}
+          >
+            I understand
+          </GoTextButton>
         </GoTextLinkBox>
       </Container>
     </TotalContainer>

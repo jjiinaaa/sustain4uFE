@@ -112,6 +112,14 @@ const Input = styled.input`
   font-family: Pretendard, sans-serif;
   color: #5c5b5b;
   background-color: transparent;
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
 
   @media screen and (max-width: 767px) {
     font-size: 0.6rem;
@@ -150,7 +158,7 @@ function Wage() {
   const { totalWorkedTime } = location.state;
 
   const [formData, setFormData] = useState({
-    hourlyWage: 0,
+    hourlyWage: "",
     paymentData: "",
   });
 
