@@ -153,12 +153,6 @@ const DayCircle = styled.div`
     font-size: 0.9rem;
     margin: 20px;
   }
-
-  &:hover {
-    background-color: ${(props) =>
-      props.selected ? "rgba(0, 91, 172, 0.4)" : "#e0e0e0"};
-    color: ${(props) => (props.selected ? "#005bac" : "#5c5b5b")};
-  }
 `;
 
 const ComponentContainer = styled.div`
