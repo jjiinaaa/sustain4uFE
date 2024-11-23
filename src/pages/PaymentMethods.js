@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation, Link } from "react-router-dom";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { Tobbar } from "../components/Tobbar";
-import passport from "../assets/image/passport.svg";
-import Progress from "../components/Progress";
 
 const TotalContainer = styled.div`
   width: 100%;
@@ -11,48 +9,62 @@ const TotalContainer = styled.div`
 `;
 
 const Container = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
+
   @media screen and (max-width: 767px) {
     width: 82%;
-    height: 82%;
+    height: 81%;
     padding: 0 9%;
   }
   @media screen and (min-width: 768px) {
-    width: 40%;
-    height: 84%;
-    padding: 0 30%;
+    width: 30%;
+    height: 82%;
+    padding: 0 35%;
   }
 `;
 
-const QuetionLBox = styled.div`
-  width: 80%;
-  margin: 0 auto;
+const MessageContainer = styled.div`
+  width: 95%;
+  padding-left: 5%;
+  @media screen and (max-width: 767px) {
+    margin: 0 0 6%;
+  }
+  @media screen and (min-width: 768px) {
+    margin: 0 0 3%;
+  }
 `;
 
-const QuetionImageBox = styled.div`
-  width: 120px;
-  height: 120px;
-  display: flex;
-  justify-content: center;
-  margin: 0 auto 10%;
-`;
-
-const QuetionImage = styled.img`
-  width: 100%;
-  height: 100%;
-`;
-
-const QuetionContent = styled.div`
-  width: 100%;
-  height: 50%;
-  text-align: center;
+const FirstText = styled.h1`
+  font-family: Pretendard;
   font-weight: 900;
-  font-size: 1.1rem;
   color: #5c5b5b;
-  margin: 0 auto 40px;
+
+  @media screen and (max-width: 767px) {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+`;
+
+const SubText = styled.p`
+  font-family: Pretendard;
+  font-weight: 900;
+  color: #005bac;
+
+  @media screen and (max-width: 767px) {
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
 `;
 
 const ButtonContent = styled.button`
@@ -78,61 +90,35 @@ const ButtonContent = styled.button`
   }
 `;
 
-const GoTextLinkBox = styled(Link)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-
-  @media screen and (max-width: 767px) {
-    width: 90%;
-    margin: 50px auto 0;
-  }
-  @media screen and (min-width: 768px) {
-    width: 40%;
-    margin: 50px auto 0;
-  }
-`;
-
-const GoTextButton = styled.button`
-  width: 100%;
-  background-color: ${(props) =>
-    props.backgroundColor === 1 ? "#005bac" : "#E2E2E2"};
+const Button = styled(Link)`
+  background-color: #005bac;
   font-weight: 700;
-  color: ${(props) => (props.backgroundColor === 1 ? "#F1F1F1" : "#5C5B5B")};
+  color: #fff;
   border-radius: 100px;
   border: none;
   text-align: center;
   cursor: pointer;
+  padding: 10px 0;
+  text-decoration: none;
 
   @media screen and (max-width: 767px) {
-    padding: 13px 0;
+    width: 80%;
     font-size: 0.75rem;
+    margin-top: 8%;
   }
   @media screen and (min-width: 768px) {
-    padding: 13px 0;
+    width: 80%;
     font-size: 1rem;
+    margin-top: 10%;
   }
 `;
 
-const Visa = () => {
-  const [statusChange, setStatusChange] = useState("");
-  const [colorChange, setColorChange] = useState(0);
+const Paymentmethods = () => {
+  const location = useLocation();
   const [active1, setActive1] = useState(false);
   const [active2, setActive2] = useState(false);
   const [active3, setActive3] = useState(false);
-
-  useEffect(() => {
-    if (
-      statusChange === "grand-attendance1" ||
-      statusChange === "cannot-job" ||
-      statusChange === "grand-attendance2"
-    ) {
-      setColorChange(1);
-    } else {
-      setColorChange(0);
-    }
-  }, [statusChange]);
+  const [paymentMethodsData, setPaymentMethodsData] = useState("");
 
   const handleButtonActive = (event, props) => {
     if (props === "btn1") {
@@ -140,33 +126,34 @@ const Visa = () => {
       setActive1(true);
       setActive2(false);
       setActive3(false);
-      setStatusChange("grand-attendance1");
+      setPaymentMethodsData("In person");
     } else if (props === "btn2") {
       event.stopPropagation(); // 이벤트 버블링 방지
       setActive2(true);
       setActive1(false);
       setActive3(false);
-      setStatusChange("cannot-job");
+      setPaymentMethodsData(
+        "By direct deposit transfer into the employee's account"
+      );
     } else if (props === "btn3") {
       event.stopPropagation(); // 이벤트 버블링 방지
       setActive3(true);
       setActive1(false);
       setActive2(false);
-      setStatusChange("grand-attendance2");
+      setPaymentMethodsData("I won’t decide it");
     }
   };
 
   return (
     <TotalContainer>
-      <Tobbar content='VISA' />
-      <Progress progressNumber={33} />
+      <Tobbar content='STANDARD LABOR CONTRACT' />
       <Container>
-        <QuetionLBox>
-          <QuetionImageBox>
-            <QuetionImage src={passport} alt='passport' />
-          </QuetionImageBox>
-          <QuetionContent>What is your current visa type?</QuetionContent>
-        </QuetionLBox>
+        <MessageContainer>
+          <FirstText>
+            Please write <br /> the following information
+          </FirstText>
+          <SubText>Payment Methods</SubText>
+        </MessageContainer>
         <ButtonContent
           active={active1}
           onClick={(event) => {
@@ -179,7 +166,7 @@ const Visa = () => {
             handleButtonActive(event, "btn1");
           }}
         >
-          D-2 (Excluding D-2-5)
+          In person
         </ButtonContent>
         <ButtonContent
           active={active2}
@@ -193,7 +180,7 @@ const Visa = () => {
             handleButtonActive(event, "btn2");
           }}
         >
-          D-2-5
+          By direct deposit transfer <br></br> into the employee's account
         </ButtonContent>
         <ButtonContent
           active={active3}
@@ -207,19 +194,17 @@ const Visa = () => {
             handleButtonActive(event, "btn3");
           }}
         >
-          D-4
+          I won’t decide it
         </ButtonContent>
-        <GoTextLinkBox to={`/${statusChange}`}>
-          <GoTextButton
-            backgroundColor={colorChange}
-            disabled={statusChange === "" ? 1 : 0}
-          >
-            Go Next
-          </GoTextButton>
-        </GoTextLinkBox>
+        <Button
+          to={`/contract`}
+          state={{ ...location.state, paymentMethodsData }}
+        >
+          Submit
+        </Button>
       </Container>
     </TotalContainer>
   );
 };
 
-export default Visa;
+export default Paymentmethods;

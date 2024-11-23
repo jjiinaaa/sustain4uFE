@@ -35,7 +35,7 @@ const QuetionLBox = styled.div`
 
 const QuetionImageBox = styled.div`
   width: 120px;
-  height: 50%;
+  height: 120px;
   display: flex;
   justify-content: center;
   margin: 0 auto 10%;

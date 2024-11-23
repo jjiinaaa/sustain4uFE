@@ -22,7 +22,7 @@ const Container = styled.div`
   }
   @media screen and (min-width: 768px) {
     width: 60%;
-    height: 84%;
+    height: 94%;
     padding: 0 20%;
   }
 `;
@@ -269,7 +269,24 @@ const Totaltime = () => {
     };
 
     setTotalTime(getTotalTime(prop, result, score));
-  }, [prop, result, score]);
+    handleSubmit(totalTime);
+
+    // pb에 넣기
+  }, [prop, result, score, totalTime]);
+
+  const handleSubmit = async (maxtime) => {
+    try {
+      const currentUser = pb.authStore.model;
+
+      const data = {
+        maxtime: maxtime,
+      };
+
+      await pb.collection("users").update(currentUser.id, data);
+    } catch (error) {
+      console.error("Error saving user data:", error);
+    }
+  };
 
   return (
     <TotalContainer>
