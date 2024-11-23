@@ -83,7 +83,6 @@ const Input = styled.input`
   border: none;
   outline: none;
   font-size: 0.5rem;
-  , sans-serif;
   color: #5c5b5b;
   background-color: transparent;
 
@@ -110,7 +109,6 @@ const Button = styled.button`
   background-color: #005bac;
   color: #ffffff;
   font-size: 1rem;
-  , sans-serif;
   font-weight: bold;
   padding: 15px 0;
   border: none;
@@ -168,7 +166,7 @@ function Signup() {
         const email = currentUser?.email;
 
         if (!email) {
-          console.error("User email not found.");
+          alert("User email not found.");
           return;
         }
 

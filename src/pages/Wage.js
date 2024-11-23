@@ -112,6 +112,14 @@ const Input = styled.input`
   font-family: Pretendard, sans-serif;
   color: #5c5b5b;
   background-color: transparent;
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
 
   @media screen and (max-width: 767px) {
     font-size: 0.6rem;
@@ -144,25 +152,31 @@ const Button = styled(Link)`
   }
 `;
 
-function WorkInfo() {
+function Wage() {
   const location = useLocation();
-  const employerFormData = location.state.employerFormData;
+  const [monthWage, setMonthWage] = useState(0);
+  const { totalWorkedTime } = location.state;
+
   const [formData, setFormData] = useState({
-    industry: "",
-    businessdescription: "",
-    jobdescription: "",
+    hourlyWage: "",
+    paymentData: "",
   });
 
   const [errors, setErrors] = useState({
-    industry: false,
-    businessdescription: false,
-    jobdescription: false,
+    hourlyWage: false,
+    paymentData: false,
   });
 
   const handleInputChange = (field, value) => {
     setFormData({ ...formData, [field]: value });
     setErrors({ ...errors, [field]: false });
   };
+
+  useEffect(() => {
+    // 평균 월급 계산
+    const monthWage = formData.hourlyWage * totalWorkedTime * 4;
+    setMonthWage(monthWage);
+  }, [formData.hourlyWage]);
 
   return (
     <TotalContainer>
@@ -172,41 +186,30 @@ function WorkInfo() {
           <FirstText>
             Please write <br /> the following information
           </FirstText>
-          <SubText>
-            Description of <br /> Work Information
-          </SubText>
+          <SubText>Houry wage & Payment date</SubText>
         </MessageContainer>
-        <InputBox isValid={!errors.industry}>
+        <InputBox isValid={!errors.hourlyWage}>
           <Input
-            type='text'
-            placeholder='Industry'
-            value={formData.industry}
-            onChange={(e) => handleInputChange("industry", e.target.value)}
+            type='number'
+            placeholder='Wage (----원)'
+            value={formData.hourlyWage}
+            onChange={(e) => handleInputChange("hourlyWage", e.target.value)}
           />
         </InputBox>
-        <InputBox isValid={!errors.businessdescription}>
+        <InputBox isValid={!errors.paymentData}>
           <Input
             type='text'
-            placeholder='Business Description'
-            value={formData.businessdescription}
-            onChange={(e) =>
-              handleInputChange("businessdescription", e.target.value)
-            }
-          />
-        </InputBox>
-        <InputBox isValid={!errors.jobdescription}>
-          <Input
-            type='text'
-            placeholder='Job Description'
-            value={formData.jobdescription}
-            onChange={(e) =>
-              handleInputChange("jobdescription", e.target.value)
-            }
+            placeholder='Day of Payment (ex. 10th)'
+            value={formData.paymentData}
+            lang='en'
+            onChange={(e) => {
+              handleInputChange("paymentData", e.target.value);
+            }}
           />
         </InputBox>
         <Button
-          to={"/workinghours"}
-          state={{ employerFormData, workInfoData: formData }}
+          to={"/paymentmethods"}
+          state={{ ...location.state, wageData: formData, monthWage }}
         >
           Go Next
         </Button>
@@ -215,4 +218,4 @@ function WorkInfo() {
   );
 }
 
-export default WorkInfo;
+export default Wage;

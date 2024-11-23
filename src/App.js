@@ -6,7 +6,7 @@ import Main from "./pages/Main";
 import Checklist1 from "./pages/Checklist1";
 import Checklist2 from "./pages/Checklist2";
 import Checklist3 from "./pages/Checklist3";
-import Visa from "./pages/visa.js";
+import Visa from "./pages/Visa.js";
 import GrandAttendance1 from "./pages/GrandAttendance1.js";
 import Degree from "./pages/Degree.js";
 import GrandAttendance2 from "./pages/GrandAttendance2.js";
@@ -32,6 +32,10 @@ import DetailSpecialCase3 from "./pages/DetailSpecialCase3.js";
 import EmployerInfo from "./pages/EmployerInfo.js";
 import WorkInfo from "./pages/WorkInfo.js";
 import WorkingHours from "./pages/WorkingHours.js";
+import CheckWorkingHours from "./pages/CheckWorkingHours.js";
+import Wage from "./pages/Wage.js";
+import PaymentMethods from "./pages/PaymentMethods.js";
+import Contract from "./pages/Contract.js";
 
 const GlobalStyle = createGlobalStyle`
   body, * {
@@ -47,6 +51,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Start />} />
+          <Route path='*' element={<Start />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/main' element={<Main />} />
           {/* 세부기능 1 */}
@@ -84,6 +89,10 @@ function App() {
           <Route path='/employerinfo' element={<EmployerInfo />} />
           <Route path='/workinfo' element={<WorkInfo />} />
           <Route path='/workinghours' element={<WorkingHours />} />
+          <Route path='/checkworkinghours' element={<CheckWorkingHours />} />
+          <Route path='/wage' element={<Wage />} />
+          <Route path='/paymentmethods' element={<PaymentMethods />} />
+          <Route path='/contract' element={<Contract />} />
         </Routes>
       </Router>
     </>
