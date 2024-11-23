@@ -269,7 +269,25 @@ const Totaltime = () => {
     };
 
     setTotalTime(getTotalTime(prop, result, score));
-  }, [prop, result, score]);
+    handleSubmit(totalTime);
+
+    // pb에 넣기
+  }, [prop, result, score, totalTime]);
+
+  const handleSubmit = async (maxtime) => {
+    try {
+      const currentUser = pb.authStore.model;
+
+      const data = {
+        maxtime: maxtime,
+      };
+
+      const record = await pb.collection("users").update(currentUser.id, data);
+      console.log("User information updated:", record);
+    } catch (error) {
+      console.error("Error saving user data:", error);
+    }
+  };
 
   return (
     <TotalContainer>

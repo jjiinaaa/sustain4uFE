@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Tobbar } from "../components/Tobbar";
 import Arrow from "../assets/image/arrow.svg";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import pb from "../services/pb";
 
 const TotalContainer = styled.div`
@@ -68,7 +68,7 @@ const Subtitle = styled.p`
   }
 `;
 
-const Card = styled(Link)`
+const Card = styled.div`
   width: 80%;
   background-color: #ffffff;
   padding: 30px;
@@ -150,6 +150,7 @@ const Footer = styled.footer`
 `;
 
 function Main() {
+  const navigate = useNavigate();
   const [userName, setUserName] = useState("USER3124");
 
   useEffect(() => {
@@ -173,7 +174,11 @@ function Main() {
           </Subtitle>
         </MessageContainer>
 
-        <Card to='/checklist1'>
+        <Card
+          onClick={() => {
+            navigate("/checklist1");
+          }}
+        >
           <ArrowIconTurnBox>
             <ArrowIconTurn src={Arrow} alt='go' />
           </ArrowIconTurnBox>
@@ -185,7 +190,11 @@ function Main() {
           <CardSubtitle>근로 허용 시간 확인</CardSubtitle>
         </Card>
 
-        <Card to='/unpermittedmain'>
+        <Card
+          onClick={() => {
+            navigate("/unpermittedmain");
+          }}
+        >
           <ArrowIconTurnBox>
             <ArrowIconTurn src={Arrow} alt='go' />
           </ArrowIconTurnBox>
@@ -197,7 +206,11 @@ function Main() {
           <CardSubtitle>국제학생 시간제 취업 불허 직종</CardSubtitle>
         </Card>
 
-        <Card onClick={() => console.log("Navigate to Employment Contract")}>
+        <Card
+          onClick={() => {
+            navigate("/employerinfo");
+          }}
+        >
           <ArrowIconTurnBox>
             <ArrowIconTurn src={Arrow} alt='go' />
           </ArrowIconTurnBox>

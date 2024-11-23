@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Tobbar } from "../components/Tobbar";
-import { useNavigate } from 'react-router-dom';
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
+import WorkInfo from "./WorkInfo";
 
 const TotalContainer = styled.div`
   width: 100%;
@@ -12,26 +13,25 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   @media screen and (max-width: 767px) {
     width: 82%;
     height: 81%;
-    margin-top: 5%;
     padding: 0 9%;
   }
   @media screen and (min-width: 768px) {
-    width: 70%;
+    width: 40%;
     height: 82%;
-    margin-top: 4%;
-    padding: 0 15%;
+    padding: 0 30%;
   }
 `;
 
 const MessageContainer = styled.div`
-  width: 100%;
-
+  width: 95%;
+  padding-left: 5%;
   @media screen and (max-width: 767px) {
-    margin: 0 0 3%;
+    margin: 0 0 6%;
   }
   @media screen and (min-width: 768px) {
     margin: 0 0 3%;
@@ -45,11 +45,26 @@ const FirstText = styled.h1`
 
   @media screen and (max-width: 767px) {
     font-size: 1rem;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   }
   @media screen and (min-width: 768px) {
     font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+`;
+
+const ComponentText = styled.h2`
+  font-family: Pretendard, sans-serif;
+  font-weight: 300;
+  color: #5c5b5b;
+
+  @media screen and (max-width: 767px) {
+    font-size: 0.7rem;
     margin-bottom: 10px;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
   }
 `;
 
@@ -67,49 +82,41 @@ const SubText = styled.p`
     margin-bottom: 10px;
   }
 `;
+
 const RowContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 30px; 
-  width: 100%; 
+  width: 100%;
+  gap: 10%;
   margin-bottom: 15px;
 `;
 
 const InputBox = styled.div`
-  flex: 1; 
   background-color: #ffffff;
   border: 1px solid #dcdcdc;
   border-radius: 8px;
   padding: 10px 15px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
-
-  @media screen and (max-width: 767px) {
-    max-width: 250px;
-    padding: 8px 12px;
-  }
-  @media screen and (min-width: 768px) {
-    max-width: 600px;
-    padding: 10px 15px;
-  }
+  width: 40%;
+  padding: 10px 15px;
 `;
 
 const Input = styled.input`
-  flex: 1;
+  width: 100%;
   border: none;
   outline: none;
-  font-family: Pretendard, sans-serif;
-  font-size: 0.8rem;
   color: #5c5b5b;
   background-color: transparent;
   appearance: none; /* 화살표 제거 */
+  // placeholder 글이 감춰지도록
 
   @media screen and (max-width: 767px) {
     font-size: 0.6rem;
   }
   @media screen and (min-width: 768px) {
-    font-size: 0.8rem; 
+    font-size: 0.8rem;
   }
 `;
 
@@ -117,44 +124,40 @@ const DayContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 5%;
-
 `;
 
 const DayCircle = styled.div`
-  width: 40px;
-  height: 40px;
   border-radius: 50%;
   background-color: ${(props) =>
-    props.selected ? "rgba(0, 91, 172, 0.3)" : "#ffffff"}; 
-  border: ${(props) => (props.selected ? "2px solid #005bac" : "none")}; 
+    props.selected ? "rgba(0, 91, 172, 0.3)" : "#ffffff"};
+  border: ${(props) =>
+    props.selected ? "2px solid #005bac" : "2px solid #fff"};
+  box-sizing: border-box;
   box-shadow: ${(props) =>
-    props.selected
-      ? "none"
-      : "0px 4px 8px rgba(0, 0, 0, 0.1)"}; 
+    props.selected ? "none" : "0px 0px 10px rgba(0, 0, 0, 0.1)"};
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${(props) => (props.selected ? "#005bac" : "#5c5b5b")}; 
-  font-family: Pretendard, sans-serif; 
+  color: ${(props) => (props.selected ? "#005bac" : "#5c5b5b")};
   font-weight: 300;
   cursor: pointer;
   @media screen and (max-width: 767px) {
-    width: 40px;
-    height: 40px;
-    font-size: 0.6rem; 
+    width: 35px;
+    height: 35px;
+    font-size: 0.6rem;
     margin: 5px;
   }
   @media screen and (min-width: 768px) {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     font-size: 0.9rem;
     margin: 20px;
   }
 
   &:hover {
     background-color: ${(props) =>
-      props.selected ? "rgba(0, 91, 172, 0.4)" : "#e0e0e0"}; 
-    color: ${(props) => (props.selected ? "#005bac" : "#5c5b5b")}; 
+      props.selected ? "rgba(0, 91, 172, 0.4)" : "#e0e0e0"};
+    color: ${(props) => (props.selected ? "#005bac" : "#5c5b5b")};
   }
 `;
 
@@ -162,24 +165,7 @@ const ComponentContainer = styled.div`
   width: 100%;
 `;
 
-const ComponentText = styled.h1`
-  font-family: Pretendard, sans-serif;
-  font-weight: 300;
-  color: #5c5b5b;
-
-  @media screen and (max-width: 767px) {
-    font-size: 0.7rem;
-    margin-bottom: 10px;
-  }
-  @media screen and (min-width: 768px) {
-    font-size: 0.9rem;
-    margin-bottom: 15px;
-  }
-`;
-
-
-const Button = styled.button`
-  width: 100%;
+const Button = styled(Link)`
   background-color: #005bac;
   font-family: Pretendard;
   font-weight: 700;
@@ -189,19 +175,23 @@ const Button = styled.button`
   text-align: center;
   cursor: pointer;
   margin-bottom: 5%;
+  text-decoration: none;
 
   @media screen and (max-width: 767px) {
+    width: 100%;
     padding: 13px 0;
     font-size: 0.75rem;
   }
   @media screen and (min-width: 768px) {
-    padding: 13px 0;
+    width: 80%;
+    padding: 10px 0;
     font-size: 1rem;
   }
 `;
 
 function WorkingHours() {
-  const navigate = useNavigate();
+  const location = useLocation();
+  const { state } = location;
 
   const [formData, setFormData] = useState({
     startDate: "",
@@ -215,64 +205,75 @@ function WorkingHours() {
     setFormData({ ...formData, [field]: value });
   };
 
-  const toggleDaySelection = (day) => {
-    setSelectedDays((prev) =>
-      prev.includes(day)
-        ? prev.filter((d) => d !== day)
-        : [...prev, day]
+  const toggleDaySelection = async (day) => {
+    await setSelectedDays((prev) =>
+      prev.includes(day) ? prev.filter((d) => d !== day) : [...prev, day]
     );
-  };
-
-  const handleNext = () => {
-    //navigate('/');
   };
 
   return (
     <TotalContainer>
-      <Tobbar content="STANDARD LABOR CONTRACT" />
-        <Container>
-          <MessageContainer>
-            <FirstText>Please write <br /> the following information</FirstText>
-            <SubText>Working Hours</SubText>
-          </MessageContainer>
+      <Tobbar content='STANDARD LABOR CONTRACT' />
+      <Container>
+        <MessageContainer>
+          <FirstText>
+            Please write <br /> the following information
+          </FirstText>
+          <SubText>Working Hours</SubText>
+        </MessageContainer>
         <ComponentContainer>
           <ComponentText>Term of Labor contract</ComponentText>
         </ComponentContainer>
         <RowContainer>
           <InputBox>
             <Input
-              type="number"
-              placeholder="Start (DD-MM-YYYY)"
+              type='date'
+              placeholder='Start (DD-MM-YYYY)'
               value={formData.startDate}
-              onChange={(e) => handleInputChange("startDate", e.target.value)}
+              lang='en'
+              onChange={(e) => {
+                handleInputChange("startDate", e.target.value);
+              }}
             />
           </InputBox>
           <InputBox>
             <Input
-              type="number"
-              placeholder="End (DD-MM-YYYY)"
+              type='date'
+              placeholder='End (DD-MM-YYYY)'
               value={formData.endDate}
-              onChange={(e) => handleInputChange("endDate", e.target.value)}
+              lang='en'
+              onChange={(e) => {
+                handleInputChange("endDate", e.target.value);
+              }}
             />
           </InputBox>
         </RowContainer>
         <ComponentContainer>
-          <ComponentText>Time of Labor contract</ComponentText>
+          <ComponentText>
+            Time of Labor contract
+            <br></br>(Please enter it by the hour.)
+          </ComponentText>
         </ComponentContainer>
         <RowContainer>
           <InputBox>
             <Input
-              type="number"
-              placeholder="Start (00:00)"
+              type='time'
+              placeholder='Start (00:00)'
               value={formData.startTime}
+              step='3600'
+              lang='en'
+              required
               onChange={(e) => handleInputChange("startTime", e.target.value)}
             />
           </InputBox>
           <InputBox>
             <Input
-              type="number"
-              placeholder="End (00:00)"
+              type='time'
+              placeholder='End (00:00)'
               value={formData.endTime}
+              step='3600'
+              lang='en'
+              required
               onChange={(e) => handleInputChange("endTime", e.target.value)}
             />
           </InputBox>
@@ -291,8 +292,16 @@ function WorkingHours() {
             </DayCircle>
           ))}
         </DayContainer>
-        <Button onClick={handleNext}>Check total  work &  Daily recess hours</Button>
-        <Button onClick={() => console.log("Cancel clicked")}>Go Next</Button>
+        <Button
+          to={"/checkworkinghours"}
+          state={{
+            ...state,
+            workingHoursData: formData,
+            selectedDaysData: selectedDays,
+          }}
+        >
+          Go Next
+        </Button>
       </Container>
     </TotalContainer>
   );
