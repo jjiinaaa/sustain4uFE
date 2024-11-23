@@ -6,7 +6,7 @@ import Main from "./pages/Main";
 import Checklist1 from "./pages/Checklist1";
 import Checklist2 from "./pages/Checklist2";
 import Checklist3 from "./pages/Checklist3";
-import Visa from "./pages/Visa.js";
+import Visa from "./pages/visa.js";
 import GrandAttendance1 from "./pages/GrandAttendance1.js";
 import Degree from "./pages/Degree.js";
 import GrandAttendance2 from "./pages/GrandAttendance2.js";
