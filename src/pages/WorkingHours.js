@@ -151,7 +151,7 @@ const DayCircle = styled.div`
     width: 40px;
     height: 40px;
     font-size: 0.9rem;
-    margin: 20px;
+    margin: 10px;
   }
 `;
 
