@@ -167,7 +167,7 @@ function Main() {
 
   return (
     <TotalContainer>
-      <Tobbar content='MAIN' />
+      <Tobbar content='MAIN' deleteMark={true} />
       <Container>
         <MessageContainer>
           <WelcomeText>Welcome, {userName}</WelcomeText>

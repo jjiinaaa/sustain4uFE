@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Arrow from "../assets/image/arrow.svg";
 
@@ -45,16 +45,30 @@ const ArrowIcon = styled.img`
   transform: translateY(-50%);
 `;
 
-export const Tobbar = ({ content }) => {
+export const Tobbar = ({ content, deleteMark }) => {
+  const [deleteArrow, setDeleteArrow] = useState(false);
+  console.log(content, deleteMark);
+
   function GoBack() {
     window.history.back();
   }
 
+  useEffect(() => {
+    if (deleteMark) {
+      setDeleteArrow(true);
+    }
+  }, []);
+
   return (
     <TobbarContainer>
-      <ArrowIconBox onClick={GoBack}>
-        <ArrowIcon src={Arrow} alt='back' />
-      </ArrowIconBox>
+      {deleteArrow ? (
+        ""
+      ) : (
+        <ArrowIconBox onClick={GoBack}>
+          <ArrowIcon src={Arrow} alt='back' />
+        </ArrowIconBox>
+      )}
+
       {content}
     </TobbarContainer>
   );
