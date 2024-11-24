@@ -217,8 +217,8 @@ function Main() {
           <ArrowIconTurnBox>
             <ArrowIconTurn src={Arrow} alt='go' />
           </ArrowIconTurnBox>
-          <CardTitle>Employment Contract</CardTitle>
-          <CardSubtitle>근로계약서 출력</CardSubtitle>
+          <CardTitle>Standard Labor Contract</CardTitle>
+          <CardSubtitle>표준근로계약서 출력</CardSubtitle>
         </Card>
       </Container>
       <Footer />
