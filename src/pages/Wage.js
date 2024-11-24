@@ -129,6 +129,14 @@ const Input = styled.input`
   }
 `;
 
+const WageErrorMessage = styled.span`
+  font-size: 0.7rem;
+  color: #ff4d4d;
+  margin-left: 10px;
+  display: ${(props) => (props.isVisible ? "block" : "none")};
+`;
+
+
 const Button = styled(Link)`
   background-color: #005bac;
   font-weight: 700;
@@ -169,7 +177,15 @@ function Wage() {
 
   const handleInputChange = (field, value) => {
     setFormData({ ...formData, [field]: value });
-    setErrors({ ...errors, [field]: false });
+
+    if (field === "hourlyWage") {
+      setErrors({
+        ...errors,
+        hourlyWage: parseInt(value) < 9860, 
+      });
+    } else {
+      setErrors({ ...errors, [field]: false });
+    }
   };
 
   useEffect(() => {
@@ -180,28 +196,31 @@ function Wage() {
 
   return (
     <TotalContainer>
-      <Tobbar content='STANDARD LABOR CONTRACT' />
+      <Tobbar content="STANDARD LABOR CONTRACT" />
       <Container>
         <MessageContainer>
           <FirstText>
             Please write <br /> the following information
           </FirstText>
-          <SubText>Houry wage & Payment date</SubText>
+          <SubText>Hourly wage & Payment date</SubText>
         </MessageContainer>
         <InputBox isValid={!errors.hourlyWage}>
           <Input
-            type='number'
-            placeholder='Wage (----원)'
+            type="number"
+            placeholder="Wage (----원)"
             value={formData.hourlyWage}
             onChange={(e) => handleInputChange("hourlyWage", e.target.value)}
           />
+          <WageErrorMessage isVisible={errors.hourlyWage}>
+            This is less than legal minimum wage
+          </WageErrorMessage>
         </InputBox>
         <InputBox isValid={!errors.paymentData}>
           <Input
-            type='text'
-            placeholder='Day of Payment (ex. 10th)'
+            type="text"
+            placeholder="Day of Payment (ex. 10th)"
             value={formData.paymentData}
-            lang='en'
+            lang="en"
             onChange={(e) => {
               handleInputChange("paymentData", e.target.value);
             }}
