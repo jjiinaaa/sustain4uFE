@@ -20,14 +20,12 @@ const Container = styled.div`
 
   @media screen and (max-width: 767px) {
     width: 82%;
-    height: 81%;
-    margin-top: 5%;
+    min-height: 100vh;
     padding: 0 9% 5%;
   }
   @media screen and (min-width: 768px) {
     width: 70%;
-    height: 82%;
-    margin-top: 4%;
+    min-height: 100vh;
     padding: 0 15%;
   }
 `;
@@ -53,7 +51,7 @@ const WelcomeText = styled.h1`
   @media screen and (min-width: 768px) {
     font-size: 1.5rem;
     margin: 0 0 15px;
-    padding-left: 16%;
+    padding-left: 13%;
   }
 `;
 
