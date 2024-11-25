@@ -47,7 +47,6 @@ const ArrowIcon = styled.img`
 
 export const Tobbar = ({ content, deleteMark }) => {
   const [deleteArrow, setDeleteArrow] = useState(false);
-  console.log(content, deleteMark);
 
   function GoBack() {
     window.history.back();

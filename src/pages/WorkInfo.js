@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Tobbar } from "../components/Tobbar";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const TotalContainer = styled.div`
@@ -146,7 +146,18 @@ const Button = styled(Link)`
 
 function WorkInfo() {
   const location = useLocation();
-  const employerFormData = location.state.employerFormData;
+  const navigate = useNavigate();
+  const [employerFormData, setEmployerFormData] = useState(null);
+  useEffect(() => {
+    if (location.state == null) {
+      alert("Please fill out the information first.");
+      // 안되면 navigation 사용
+      navigate("/main");
+    } else {
+      setEmployerFormData(location.state.employerFormData); // null or undefined
+    }
+  }, []);
+
   const [formData, setFormData] = useState({
     industry: "",
     businessdescription: "",

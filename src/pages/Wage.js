@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Tobbar } from "../components/Tobbar";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const TotalContainer = styled.div`
@@ -136,7 +136,6 @@ const WageErrorMessage = styled.span`
   display: ${(props) => (props.isVisible ? "block" : "none")};
 `;
 
-
 const Button = styled(Link)`
   background-color: #005bac;
   font-weight: 700;
@@ -162,8 +161,9 @@ const Button = styled(Link)`
 
 function Wage() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [monthWage, setMonthWage] = useState(0);
-  const { totalWorkedTime } = location.state;
+  const [totalWorkedTime, setTotalWorkedTime] = useState(0);
 
   const [formData, setFormData] = useState({
     hourlyWage: "",
@@ -181,7 +181,7 @@ function Wage() {
     if (field === "hourlyWage") {
       setErrors({
         ...errors,
-        hourlyWage: parseInt(value) < 9860, 
+        hourlyWage: parseInt(value) < 9860,
       });
     } else {
       setErrors({ ...errors, [field]: false });
@@ -189,6 +189,12 @@ function Wage() {
   };
 
   useEffect(() => {
+    if (location.state === null) {
+      alert("Please fill out the information first.");
+      navigate("/main");
+    } else {
+      setTotalWorkedTime(location.state.totalWorkedTime);
+    }
     // 평균 월급 계산
     const monthWage = formData.hourlyWage * totalWorkedTime * 4;
     setMonthWage(monthWage);
@@ -196,7 +202,7 @@ function Wage() {
 
   return (
     <TotalContainer>
-      <Tobbar content="STANDARD LABOR CONTRACT" />
+      <Tobbar content='STANDARD LABOR CONTRACT' />
       <Container>
         <MessageContainer>
           <FirstText>
@@ -206,8 +212,8 @@ function Wage() {
         </MessageContainer>
         <InputBox isValid={!errors.hourlyWage}>
           <Input
-            type="number"
-            placeholder="Wage (----원)"
+            type='number'
+            placeholder='Wage (----원)'
             value={formData.hourlyWage}
             onChange={(e) => handleInputChange("hourlyWage", e.target.value)}
           />
@@ -217,10 +223,10 @@ function Wage() {
         </InputBox>
         <InputBox isValid={!errors.paymentData}>
           <Input
-            type="text"
-            placeholder="Day of Payment (ex. 10th)"
+            type='text'
+            placeholder='Day of Payment (ex. 10th)'
             value={formData.paymentData}
-            lang="en"
+            lang='en'
             onChange={(e) => {
               handleInputChange("paymentData", e.target.value);
             }}

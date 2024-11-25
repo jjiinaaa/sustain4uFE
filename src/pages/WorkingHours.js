@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Tobbar } from "../components/Tobbar";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import WorkInfo from "./WorkInfo";
 
 const TotalContainer = styled.div`
   width: 100%;
@@ -185,7 +184,17 @@ const Button = styled(Link)`
 
 function WorkingHours() {
   const location = useLocation();
-  const { state } = location;
+  const navigate = useNavigate();
+  const [state, setState] = useState({});
+  useEffect(() => {
+    if (location.state == null) {
+      alert("Please fill out the information first.");
+      // 안되면 navigation 사용
+      navigate("/main");
+    } else {
+      setState(location.state); // null or undefined
+    }
+  }, []);
 
   const [formData, setFormData] = useState({
     startDate: "",

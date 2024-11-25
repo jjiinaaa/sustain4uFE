@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Tobbar } from "../components/Tobbar";
 
@@ -115,10 +115,18 @@ const Button = styled(Link)`
 
 const Paymentmethods = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [active1, setActive1] = useState(false);
   const [active2, setActive2] = useState(false);
   const [active3, setActive3] = useState(false);
   const [paymentMethodsData, setPaymentMethodsData] = useState("");
+
+  useEffect(() => {
+    if (location.state === null) {
+      alert("Please enter the previous page first.");
+      navigate("/main");
+    }
+  }, []);
 
   const handleButtonActive = (event, props) => {
     if (props === "btn1") {
